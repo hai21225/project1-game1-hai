@@ -1,10 +1,16 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class SkillButton : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
     [SerializeField] private RectTransform _cancelZone;
+    [SerializeField] private GameObject _joystickRoot;
+    [SerializeField] private RectTransform _joystickHandle;
+    [SerializeField] private RectTransform _joystickArea;
+    [SerializeField] private float _joystickRadius = 80f;
     private bool _isCancel;
+    private Image _handle, _area;
 
     public bool Interactable { get; private set; } = true;
 
@@ -15,7 +21,11 @@ public class SkillButton : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
     public event System.Action OnCancel;
     private void Start()
     {
+        _handle = _joystickHandle.GetComponent<Image>();
+        _area = _joystickArea.GetComponent<Image>();
         _cancelZone.gameObject.SetActive(false);
+        _joystickRoot.SetActive(false);
+
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -25,6 +35,11 @@ public class SkillButton : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
             return;
         }
         Vector2 direction = eventData.position - _startPosition;
+        if (_joystickRoot != null)
+        {
+            Vector2 clampedDir = Vector2.ClampMagnitude(direction, _joystickRadius);
+            _joystickHandle.anchoredPosition = clampedDir;
+        }
         OnDragEvent?.Invoke(direction);
         if (_cancelZone == null) return;
         bool inCancel = RectTransformUtility.RectangleContainsScreenPoint(
@@ -33,6 +48,23 @@ public class SkillButton : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
                             eventData.pressEventCamera
                             );
         _isCancel= inCancel;
+        if (_isCancel)
+        {
+            if(_handle != null && _area != null )
+            {
+                _handle.color= Color.red;
+                _area.color = Color.red;
+            }
+
+        }
+        else
+        {
+            if (_handle != null && _area != null)
+            {
+                _handle.color = Color.white;
+                _area.color = Color.white;
+            }
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -41,6 +73,13 @@ public class SkillButton : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
         {
             return; 
         }
+        if (_joystickRoot != null)
+        {
+            _joystickRoot.SetActive(true);
+            
+            _joystickHandle.anchoredPosition = Vector2.zero;
+        }
+
         _startPosition = eventData.position;
         _isCancel = false;
         if(_cancelZone  != null)
@@ -49,7 +88,7 @@ public class SkillButton : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
         }
         OnPress?.Invoke();
         //first
-        OnDragEvent.Invoke(_startPosition - _startPosition);
+        OnDragEvent.Invoke(eventData.position - _startPosition);
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -62,6 +101,10 @@ public class SkillButton : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
         if (_cancelZone != null)
         {
             _cancelZone.gameObject.SetActive(false);
+        }
+        if (_joystickRoot != null)
+        {
+            _joystickRoot.SetActive(false);
         }
         if (_isCancel)
         {
@@ -76,4 +119,5 @@ public class SkillButton : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
     {
         Interactable = value;
     }
+
 }

@@ -6,6 +6,8 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private Image _hpImage;
     [SerializeField] private float _hp = 100f;
+    [SerializeField] private GameObject _damageTextPrefab;
+    [SerializeField] private Transform _damageTextPos;
     private float _currentHp;
     private Base _player;
     [SerializeField] private float _speed = 2f;
@@ -34,12 +36,22 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float damage)
     {
         _currentHp -= damage;
+        ShowDamage(damage);
         if (_currentHp <= 0)
         {
             Dead();
         }
     }
+    private void ShowDamage(float damage)
+    {
+        GameObject dmgText = Instantiate(
+            _damageTextPrefab,
+            _damageTextPos.position,
+            Quaternion.identity
+        );
 
+        dmgText.GetComponent<DamageText>().SetDamage(damage);
+    }
     private void Update()
     {
         if (_player != null)

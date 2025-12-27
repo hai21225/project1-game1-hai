@@ -1,17 +1,17 @@
 using System;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
-
 public class Attack : MonoBehaviour
 {
     [SerializeField]private AttackButton AttackButton;
     [SerializeField] private float _attackSpeed = 0.5f;
     private float _delay;
-    [SerializeField] private AttackRange _attackRange;
     [SerializeField] private GameObject _handAttack;
+    [SerializeField] private GameObject _attackIndicator;
     [SerializeField] private GameObject _normalAttackPrefab;
     [SerializeField] private GameObject _strongAttackPrefab;
     [SerializeField] private Transform _attackPosition;
+    [SerializeField] private EnemyListDetected _currentEnemy;
+
     private BaronBase _baronBase;
     private bool _isGod= false;
 
@@ -19,6 +19,7 @@ public class Attack : MonoBehaviour
     {
         _delay = 0;
         _handAttack.SetActive(false);
+        _attackIndicator.SetActive(false);
         _baronBase= GetComponent<BaronBase>();  
 
         
@@ -35,12 +36,12 @@ public class Attack : MonoBehaviour
         {
             return;
         }
-        if (_attackRange.currentEnemy == null)
+        if (_currentEnemy.Detected() == null)
         {
+            _attackIndicator.SetActive(true);
+            Invoke(nameof(AttackIndicatorDisable), 0.12f);
             return;
         }
-
-
         PerformAttack();
     }
 
@@ -48,7 +49,8 @@ public class Attack : MonoBehaviour
     {
         _delay = _attackSpeed;
         _handAttack.SetActive(true);
-        Transform target = _attackRange.currentEnemy.GetComponent<Transform>();
+        //Transform target = _attackRange.currentEnemy.GetComponent<Transform>();
+        Transform target = _currentEnemy.Detected().GetComponent<Transform>();
         RotatedToTarget(target);
         Flip(target);
         if (_baronBase.IsStrongAttack())
@@ -97,9 +99,16 @@ public class Attack : MonoBehaviour
     private void Disabale()
     {
         _handAttack.SetActive(false);
+        
     }
     public void SetGodState(bool isGod)
     {
         _isGod = isGod;
     }
+
+    private void AttackIndicatorDisable()
+    {
+        _attackIndicator.SetActive(false);
+    }
+
 }

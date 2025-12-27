@@ -45,17 +45,29 @@ TagManager:
   - name: Ground
     uniqueID: 2216634873
     locked: 0
-  - name: Mountain
+  - name: Walkinfront
     uniqueID: 2714493199
     locked: 0
-  - name: Water
-    uniqueID: 419271273
+  - name: Collision
+    uniqueID: 2235643063
     locked: 0
-  - name: Decoration
+  - name: Enemy
     uniqueID: 461016517
     locked: 0
-  - name: Unit
+  - name: ChainLightning
     uniqueID: 1723227391
+    locked: 0
+  - name: Player
+    uniqueID: 419271273
+    locked: 0
+  - name: Walkinbehind
+    uniqueID: 1507337163
+    locked: 0
+  - name: Decoration
+    uniqueID: 1755334185
+    locked: 0
+  - name: ui
+    uniqueID: 4253319667
     locked: 0
   m_RenderingLayers:
   - Default
