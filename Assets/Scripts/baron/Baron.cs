@@ -8,7 +8,7 @@ public enum UltimateState
     Landing,
     LightningGod
 }
-public class Baron : MonoBehaviour
+public class Baron : MonoBehaviour,ISkillUser
 {
     [SerializeField] private GameObject _lightningPrefab;
     [SerializeField] private GameObject _ultimateEffect;
@@ -35,22 +35,26 @@ public class Baron : MonoBehaviour
 
     private SpriteRenderer _spriteRenderer;
     private Animator _animator;
-    private Attack _attack;
-    private BaronBase _baronBase;
+    //private Attack _attack;
+    //private BaronBase _baronBase;
+    private BaronAttack _attack;
     [SerializeField]private LayerMask _enemyLayer;
     private UltimateState _ultimateState = UltimateState.None;
+
+    [SerializeField] private CharacterSkillSet _skillSet;
+    public CharacterSkillSet SkillSet => _skillSet;
+
     private void Start()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
-        _attack = GetComponent<Attack>();
-        _baronBase = GetComponent<BaronBase>(); 
+        _attack = GetComponent<BaronAttack>();
         _rangeStrike.SetActive(false);
         _ultimateEffect.SetActive(false);
     }
     private void Update()
     {
-        if (_baronBase.GetAmountAttack())
+        if (_attack.GetAmountAttack())
         {
             _lastTimeUseSkill1 = 0;
             _lastTimeUseSkill2=0;
@@ -76,11 +80,11 @@ public class Baron : MonoBehaviour
     {
         if (_isDashing) return;
         if (_lastTimeUseSkill1>0f) return;
-        _baronBase.SetStrongAttack(true);
+        _attack.SetEmpoweredAttack(true);
         if(_isFreeCooldownFromAttack)
         {
             _isFreeCooldownFromAttack = false;
-            _baronBase.ResetAmountAttack();
+            _attack.ResetAmountAttack();
         }
         _lastTimeUseSkill1 = _skill1Cooldown;
         StartCoroutine(Dash(direction.normalized));
@@ -107,11 +111,11 @@ public class Baron : MonoBehaviour
     {
         if (_lastTimeUseSkill2 > 0f) return;
         _lastTimeUseSkill2= _skill2Cooldown;
-        _baronBase.SetStrongAttack(true);
+        _attack.SetEmpoweredAttack(true);
         if (_isFreeCooldownFromAttack)
         {
             _isFreeCooldownFromAttack = false;
-            _baronBase.ResetAmountAttack();
+            _attack.ResetAmountAttack();
         }
         GameObject lightningPrefab = Instantiate(_lightningPrefab, this.transform.position, Quaternion.identity);
         LightningLogic logic= lightningPrefab.GetComponent<LightningLogic>();
@@ -201,5 +205,43 @@ public class Baron : MonoBehaviour
     private float TimeRemainPercent(float time, float cooldown)
     {
         return Mathf.Clamp01(1 - time / cooldown);
+    }
+
+    public bool CanUseSkill(int index)
+    {
+        switch (index)
+        {
+            case 0: return CanUseSkill1();
+            case 1: return CanUseSkill2();
+            case 2: return CanUseSkill3();
+            default: return false;
+        }
+    }
+
+    public void UseSkill(int index, Vector2 dir)
+    {
+        switch (index)
+        {
+            case 0:
+                Skill1(dir);
+                break;
+            case 1:
+                Skill2(dir);
+                break;
+            case 2:
+                Skill3(dir);
+                break;
+        }
+    }
+
+    public float GetCooldownPercent(int index)
+    {
+        switch (index)
+        {
+            case 0: return TimeRemainingSkill1();
+            case 1: return TimeRemainingSkill2();
+            case 2: return TimeRemainingSkill3();
+            default: return 1f;
+        }
     }
 }

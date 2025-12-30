@@ -66,7 +66,7 @@ TagManager:
   - name: Decoration
     uniqueID: 1755334185
     locked: 0
-  - name: ui
+  - name: Damage
     uniqueID: 4253319667
     locked: 0
   m_RenderingLayers:

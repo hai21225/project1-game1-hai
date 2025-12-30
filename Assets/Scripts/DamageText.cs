@@ -3,11 +3,14 @@ using UnityEngine;
 
 public class DamageText: MonoBehaviour
 {
+    /// <summary>
+    /// maybe upgrade to object pooling
+    /// </summary>
 
     [SerializeField] private float _moveUpSpeed= 1f;
     [SerializeField] private float _lifeTime = 0.5f;
 
-    [SerializeField] private TextMesh _textMesh;
+    [SerializeField] private TextMeshProUGUI _textMesh;
     private  Color _color;
 
     private void Start()
@@ -17,7 +20,7 @@ public class DamageText: MonoBehaviour
 
     public void SetDamage(float damage)
     {
-        _textMesh.text = Mathf.RoundToInt(damage).ToString();
+        _textMesh.text = (damage).ToString();
     }
 
     private void Update()

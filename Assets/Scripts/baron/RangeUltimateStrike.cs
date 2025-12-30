@@ -59,7 +59,7 @@ public class RangeUltimateStrike : MonoBehaviour
                     continue;
                 }
 
-                _enemiesInRange[i].TakeDamage(_damage);
+                _enemiesInRange[i].TakeDamage(_damage*21f);
                 SpawnLightning(
                     _lightningPos.transform.position,
                     _enemiesInRange[i].transform.position

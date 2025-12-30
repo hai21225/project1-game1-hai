@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class StrongAttack: MonoBehaviour
+public class EmpoweredAttack: MonoBehaviour
 {
     private Transform _target;
     public void Init(Transform target)

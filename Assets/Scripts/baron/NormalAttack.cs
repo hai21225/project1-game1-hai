@@ -22,7 +22,6 @@ public class NormalAttack : MonoBehaviour
     }
     private void Start()
     {
-        // i have a bug, sometime projectile not destroy, so i put destroy here and time
         Destroy(gameObject, 2f);
     }
     void Update()
@@ -37,10 +36,7 @@ public class NormalAttack : MonoBehaviour
         Vector3 dir= _target.position - transform.position;
         float angle = Mathf.Atan2(dir.y, dir.x)*Mathf.Rad2Deg;
         transform.rotation= Quaternion.Euler(0,0,angle);    
-
-
         transform.position += dir.normalized * _speed *Time.deltaTime;
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -53,10 +49,8 @@ public class NormalAttack : MonoBehaviour
                 {
                     if (collision.TryGetComponent(out Enemy enemy))
                     {
-                        Debug.Log("checkkk");
                         StartChainLightning(enemy);
-                        //Destroy(gameObject);
-                        //GetComponent<SpriteRenderer>().enabled = false;
+                        GetComponent<SpriteRenderer>().enabled = false;
                         GetComponent<Collider2D>().enabled = false;
                     }
                 }
@@ -112,34 +106,6 @@ public class NormalAttack : MonoBehaviour
         }
         Destroy(gameObject);
     }
-    private void ChainLightning(Enemy firstTarget)
-    {
-        float currentDamage = _damage;
-        Enemy currentTarget = firstTarget;
-
-        //save enemy attacked
-        var hitEnemies = new HashSet<Enemy>();
-
-        for (int i = 0; i < _maxChain; i++)
-        {
-            if (currentTarget == null) break;
-
-            currentTarget.TakeDamage(currentDamage);
-            hitEnemies.Add(currentTarget);
-
-            Enemy nextTarget = FindNextEnemy(currentTarget.transform.position, hitEnemies);
-            if (nextTarget == null) break;
-
-            //spawn effect 
-            Instantiate(_strikePrefab, currentTarget.transform.position, Quaternion.identity);
-            SpawnLightning(currentTarget.transform.position,nextTarget.transform.position);
-
-            currentTarget = nextTarget;
-            currentDamage *= _chainDamageMultiplier;
-
-        }
-    }
-
     private Enemy FindNextEnemy(Vector3 fromPos, HashSet<Enemy> hitEnemies)
     {
         Collider2D[] hits = Physics2D.OverlapCircleAll(fromPos, _chainRange);
@@ -166,10 +132,8 @@ public class NormalAttack : MonoBehaviour
                 }
             }
         }
-
         return nearestEnemy;
     }
-
     private void SpawnLightning(Vector3 from, Vector3 to)
     {
         GameObject go = Instantiate(_chainLightning);
@@ -177,12 +141,9 @@ public class NormalAttack : MonoBehaviour
         lr.material.color = Color.yellow;
         int segments = 8;            // càng nhiều càng zig-zag
         float offsetAmount = 0.3f;   // độ lệch sét
-
         lr.positionCount = segments + 1;
         lr.startColor = Color.cyan;
         lr.endColor = Color.white;
-
-
         Vector3 dir = to - from;
         Vector3 normal = Vector3.Cross(dir.normalized, Vector3.forward);
 
@@ -199,14 +160,17 @@ public class NormalAttack : MonoBehaviour
 
             lr.SetPosition(i, pos);
         }
-
         Destroy(go, 0.3f); // sét nháy nhanh
     }
-
-
     public void SetGodState(bool value)
     {
-        Debug.Log("set state:  " + value);
+        //Debug.Log("set state:  " + value);
         _isGod= value;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(transform.position, _chainRange);
     }
 }

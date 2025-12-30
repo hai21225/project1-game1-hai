@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e5725885ad770140a52c6d76e761a1a, type: 3}
+  m_Name: baron skill set
+  m_EditorClassIdentifier: 
+  skill1: {fileID: 11400000, guid: 81a71d457bb864649b45c8dc47819760, type: 2}
+  skill2: {fileID: 11400000, guid: 6eb91c4a52699bd4e98f8c7a2950a387, type: 2}
+  skill3: {fileID: 11400000, guid: cf031cf4d68b25444bdf4f69b56a0460, type: 2}
