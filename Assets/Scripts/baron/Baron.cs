@@ -10,7 +10,6 @@ public enum UltimateState
 }
 public class Baron : MonoBehaviour,ISkillUser
 {
-    [SerializeField] private GameObject _lightningPrefab;
     [SerializeField] private GameObject _ultimateEffect;
     [SerializeField] private GameObject _rangeStrike;
     [SerializeField] private float _dashSpeed = 10f;
@@ -117,9 +116,9 @@ public class Baron : MonoBehaviour,ISkillUser
             _isFreeCooldownFromAttack = false;
             _attack.ResetAmountAttack();
         }
-        GameObject lightningPrefab = Instantiate(_lightningPrefab, this.transform.position, Quaternion.identity);
-        LightningLogic logic= lightningPrefab.GetComponent<LightningLogic>();
-        logic.SetDirection(direction);
+        var obj = PoolManager.Instance.Spawn("Lightning", transform.position, Quaternion.identity)
+            .GetComponent<LightningLogic>();
+        obj.SetDirection(direction);
     }
 
     public void Skill3(Vector2 direction)

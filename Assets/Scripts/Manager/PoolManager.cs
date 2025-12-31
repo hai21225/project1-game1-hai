@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI.Table;
 
 public class PoolManager: MonoBehaviour
 {
@@ -34,15 +35,21 @@ public class PoolManager: MonoBehaviour
     }
     public GameObject Spawn(string name, Vector3 pos, Quaternion rotation)
     {
-        if (!poolDict.ContainsKey(name))
-        {
+        if (!poolDict.TryGetValue(name, out var queue))
             return null;
-        }
-        var obj= poolDict[name].Dequeue();
+
+        var obj = queue.Dequeue();
         obj.transform.SetPositionAndRotation(pos, rotation);
         obj.SetActive(true);
-        obj.GetComponent<IPoolable>()?.OnSpawn();
-        poolDict[name].Enqueue(obj);
         return obj;
+    }
+
+    public void Despawn(string name, GameObject obj)
+    {
+        if (!poolDict.ContainsKey(name)) return;
+
+        obj.GetComponent<IPoolable>()?.OnDespawn();
+        obj.SetActive(false);
+        poolDict[name].Enqueue(obj);
     }
 }

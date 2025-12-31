@@ -3,19 +3,21 @@ using UnityEngine.UI;
 
 public class BaronAttack : MonoBehaviour, IAttackExecutor
 {
+    [SerializeField] private CharacterStats _stats;
     [SerializeField] private Image _mana;
     [SerializeField] private GameObject _handAttack;
-    [SerializeField] private GameObject _energyProjectile;
-    [SerializeField] private GameObject _energyEmpoweredProjetctile;
     [SerializeField] private Transform _attackPos;
-    [SerializeField] private int _amountAttack = 2;
-
+    [SerializeField] private ChainLightningController _chain;
+    private float _damage;
+    private int _amountAttack;
     private int _currentAmountAttack = 0;
     private bool _isEmpowered=false;
     private bool _isGod=false;
 
     private void Start()
     {
+        _amountAttack = _stats.mana;
+        _damage = _stats.maxDamage;
         Disable();
     }
     private void Update()
@@ -58,17 +60,26 @@ public class BaronAttack : MonoBehaviour, IAttackExecutor
     }
     private void NormalAttack(Transform target)
     {
-        var attack= Instantiate(_energyProjectile,_attackPos.position,Quaternion.identity);
-        var aattack = attack.GetComponent<NormalAttack>();
-        aattack.Init(target);
-        aattack.SetGodState(_isGod);
+        var attack = PoolManager.Instance.Spawn("EnergyProjectile", _attackPos.position, Quaternion.identity)
+            .GetComponent<EnergyProjectile>();
+
+        attack.Init(target);
+
+        attack.OnHitEnemy += enemy =>
+        {
+            if (_isGod)
+                _chain.Execute(enemy);
+            else
+                enemy.TakeDamage(_damage);
+        };
         SetAmountAttack();
     }
     private void EmpoweredAttack(Transform target)
     {
-        var attack = Instantiate(_energyEmpoweredProjetctile, _attackPos.position, Quaternion.identity);
-        var aattack = attack.GetComponent<EmpoweredAttack>();
+        var attack = PoolManager.Instance.Spawn("EmpoweredProjectile", _attackPos.position,Quaternion.identity);
+        var aattack = attack.GetComponent<EmpweredPrjtile>();
         aattack.Init(target);
+        aattack.OnSpawn();
         _isEmpowered=false;
     }
     private void SetAmountAttack()

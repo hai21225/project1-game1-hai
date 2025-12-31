@@ -37,7 +37,8 @@ public class BaseCharacter: MonoBehaviour
         _currentHp = _stats.maxHp;
         _currentSpeed= _stats.maxSpeed;
         _isDead = false;
-       
+
+        CameraManager.Instance.SetTarget(transform);
     }
     private void FixedUpdate()
     {

@@ -800,8 +800,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be351af42ae169439f9486654165aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _strikePrefab: {fileID: 695567472309020956, guid: e4b1d72d56d4a4b42ac2879d780626c9, type: 3}
-  _chainLightning: {fileID: 3461273091517195982, guid: 1936ef488cfb56e48b8d1f419594c272, type: 3}
   _lightningPos: {fileID: 3645011092393913905}
   _tickDelay: 0.25
   _damage: 0.75
@@ -824,6 +822,7 @@ GameObject:
   - component: {fileID: 2286454204411519318}
   - component: {fileID: 2845752494918592559}
   - component: {fileID: 4380774936397638526}
+  - component: {fileID: 2375716205323630410}
   m_Layer: 0
   m_Name: baron
   m_TagString: Untagged
@@ -1018,7 +1017,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0441c90b937f8564296e4e57e01e2945, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lightningPrefab: {fileID: 4979341469215509034, guid: c75d9b7c21a88ee40926fd0549fa28d2, type: 3}
   _ultimateEffect: {fileID: 5640777250505351195}
   _rangeStrike: {fileID: 8619536106799300192}
   _dashSpeed: 22
@@ -1107,12 +1105,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6062ce88ed07ca343b1199a885457d8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _stats: {fileID: 11400000, guid: 93a266aa1c904d44f93e55123aed0d40, type: 2}
   _mana: {fileID: 6448655298222150503}
   _handAttack: {fileID: 5971711761816681745}
-  _energyProjectile: {fileID: 8281831940887270801, guid: c175934802c81e04bb8cfa2b1ea04b01, type: 3}
-  _energyEmpoweredProjetctile: {fileID: 1491669255961180431, guid: ee206c118d710f84bb83f9156a363e42, type: 3}
   _attackPos: {fileID: 2668138660170282447}
-  _amountAttack: 2
+  _chain: {fileID: 2375716205323630410}
+--- !u!114 &2375716205323630410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8791557952773663005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 826fe37fede830048af1347111bb3a64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stats: {fileID: 11400000, guid: 93a266aa1c904d44f93e55123aed0d40, type: 2}
+  _maxChain: 4
+  _range: 3
+  _damageMultiplier: 0.36
 --- !u!1001 &504319565985104112
 PrefabInstance:
   m_ObjectHideFlags: 0

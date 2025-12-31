@@ -1,17 +1,13 @@
 ﻿using UnityEngine;
 
-public class LightningLogic : MonoBehaviour
+public class LightningLogic : MonoBehaviour,IPoolable
 {
     [SerializeField] private float _speed = 10f;
     [SerializeField] private float _range = 5f;
 
-
     private bool _canMove;
     private Vector2 _direction;
     private Vector3 _startPosition;
-    private void Start()
-    {
-    }
 
     private void Update()
     {
@@ -26,7 +22,7 @@ public class LightningLogic : MonoBehaviour
         float traveled = (transform.position - _startPosition).sqrMagnitude;
         if(traveled>= _range)
         {
-            Destroy(gameObject);
+            ReturnToPool();
         }
     }
     public void SetDirection(Vector2 dir)
@@ -63,5 +59,21 @@ public class LightningLogic : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void OnSpawn()
+    {
+        return;
+    }
+
+    public void OnDespawn()
+    {
+        _canMove=false;
+        _startPosition= Vector2.zero;
+        _direction=Vector2.zero;
+    }
+    private void ReturnToPool()
+    {
+        PoolManager.Instance.Despawn("Lightning", gameObject);
     }
 }

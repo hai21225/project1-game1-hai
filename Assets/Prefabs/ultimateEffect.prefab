@@ -123,3 +123,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53f49532825218d45825b8ca5f65b038, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _name: StrikeEffect
+  _lifeTime: 0.15
