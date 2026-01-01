@@ -7,14 +7,12 @@ public class CharacterSkillController : MonoBehaviour
     //[SerializeField] private GameObject[] _indicators;
     [SerializeField] private SkillButton[] _skillButtons;
     [SerializeField] private Image[] _skillImages;
+    [SerializeField] private Image[] _skillImagesBackground;
     private SkillIndicatorHandler _indicatorHandler;
 
     private ISkillUser _currentUser;
     private BaseCharacter _currentCharacter;
 
-    private void Awake()
-    {
-    }
     private void Start()
     {
         for(int i= 0;i<_skillButtons.Length;i++)
@@ -65,6 +63,7 @@ public class CharacterSkillController : MonoBehaviour
             }
 
             _skillImages[i].sprite = skill.icon;
+            _skillImagesBackground[i].sprite=skill.icon;
             Debug.Log($"Set icon skill {i}");
         }
     }

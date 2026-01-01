@@ -4903,6 +4903,10 @@ MonoBehaviour:
   - {fileID: 1163329977}
   - {fileID: 72353174}
   - {fileID: 1990893811}
+  _skillImagesBackground:
+  - {fileID: 1224272680}
+  - {fileID: 1585882551}
+  - {fileID: 1299924624}
 --- !u!1 &798585938
 GameObject:
   m_ObjectHideFlags: 0
@@ -10074,7 +10078,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9bff199160a62747b6c2f61e3c4b457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characterPrefab: {fileID: 6391481163431453547, guid: 7c3323bb7c5e5f743a17fc746c26e5ae, type: 3}
+  _characterPrefab: {fileID: 4494482190973500662, guid: 75c3d3cc3c925534ca0735a93968f38d, type: 3}
   _skillController: {fileID: 779350060}
   _spawnPos: {x: -18.22, y: -2.95, z: 0.02960083}
 --- !u!4 &848886636

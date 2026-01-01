@@ -34,14 +34,12 @@ public class Baron : MonoBehaviour,ISkillUser
 
     private SpriteRenderer _spriteRenderer;
     private Animator _animator;
-    //private Attack _attack;
-    //private BaronBase _baronBase;
     private BaronAttack _attack;
-    [SerializeField]private LayerMask _enemyLayer;
+    //[SerializeField]private LayerMask _enemyLayer;
     private UltimateState _ultimateState = UltimateState.None;
 
     [SerializeField] private CharacterSkillSet _skillSet;
-    public CharacterSkillSet SkillSet => _skillSet;
+    public CharacterSkillSet SkillSet => _skillSet;         
 
     private void Start()
     {
