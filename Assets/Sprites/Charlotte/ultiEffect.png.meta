@@ -1,37 +1,28 @@
 fileFormatVersion: 2
-guid: d1cff53ee808b1a4bba570535ffe4e77
+guid: 3ca0d3edd2b01284ca3d933130bb44e2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5092722445662816998
-    second: EmpoweredAttack_0
+      213: 907892478117504053
+    second: ultiEffect_0
   - first:
-      213: 3313510183054726675
-    second: EmpoweredAttack_1
+      213: -6290649606376554315
+    second: ultiEffect_1
   - first:
-      213: 1048875132107345176
-    second: EmpoweredAttack_2
+      213: -8381703522518358424
+    second: ultiEffect_2
   - first:
-      213: -5818992751790100516
-    second: EmpoweredAttack_3
+      213: -4957003799342721135
+    second: ultiEffect_3
   - first:
-      213: -6203574497083127701
-    second: EmpoweredAttack_4
+      213: 8733475234946986788
+    second: ultiEffect_4
   - first:
-      213: -2903056992061867774
-    second: EmpoweredAttack_5
+      213: -8141283019011566127
+    second: ultiEffect_5
   - first:
-      213: 2233342179672465057
-    second: EmpoweredAttack_6
-  - first:
-      213: -1754528195293208490
-    second: EmpoweredAttack_7
-  - first:
-      213: 6206423154003300235
-    second: EmpoweredAttack_8
-  - first:
-      213: -2751354374531424711
-    second: EmpoweredAttack_9
+      213: -801491056376417058
+    second: ultiEffect_6
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -78,7 +69,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 12
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -140,7 +131,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: EmpoweredAttack_0
+      name: ultiEffect_0
       rect:
         serializedVersion: 2
         x: 0
@@ -155,14 +146,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6ea0469f41cfca640800000000000000
-      internalID: 5092722445662816998
+      spriteID: 534617c066b799c00800000000000000
+      internalID: 907892478117504053
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EmpoweredAttack_1
+      name: ultiEffect_1
       rect:
         serializedVersion: 2
         x: 32
@@ -177,14 +168,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 316dd9ca4f3fbfd20800000000000000
-      internalID: 3313510183054726675
+      spriteID: 5b08975238f13b8a0800000000000000
+      internalID: -6290649606376554315
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EmpoweredAttack_2
+      name: ultiEffect_2
       rect:
         serializedVersion: 2
         x: 64
@@ -199,14 +190,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 81dcffe106a5e8e00800000000000000
-      internalID: 1048875132107345176
+      spriteID: 86627afed053eab80800000000000000
+      internalID: -8381703522518358424
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EmpoweredAttack_3
+      name: ultiEffect_3
       rect:
         serializedVersion: 2
         x: 96
@@ -221,14 +212,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cdf6afe2ce8ce3fa0800000000000000
-      internalID: -5818992751790100516
+      spriteID: 1975aedce4f253bb0800000000000000
+      internalID: -4957003799342721135
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EmpoweredAttack_4
+      name: ultiEffect_4
       rect:
         serializedVersion: 2
         x: 128
@@ -243,14 +234,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b6800b3ecd978e9a0800000000000000
-      internalID: -6203574497083127701
+      spriteID: 423bfa94479833970800000000000000
+      internalID: 8733475234946986788
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EmpoweredAttack_5
+      name: ultiEffect_5
       rect:
         serializedVersion: 2
         x: 160
@@ -265,14 +256,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2093079fb0546b7d0800000000000000
-      internalID: -2903056992061867774
+      spriteID: 1d555e38a3a540f80800000000000000
+      internalID: -8141283019011566127
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EmpoweredAttack_6
+      name: ultiEffect_6
       rect:
         serializedVersion: 2
         x: 192
@@ -287,14 +278,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1ae164131ec6efe10800000000000000
-      internalID: 2233342179672465057
+      spriteID: ed4f706712880e4f0800000000000000
+      internalID: -801491056376417058
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EmpoweredAttack_7
+      name: ultiEffect_7
       rect:
         serializedVersion: 2
         x: 224
@@ -307,16 +298,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 650242bf6e9a6a7e0800000000000000
-      internalID: -1754528195293208490
+      spriteID: aa038b27329fa6f4189eb996394ac95f
+      internalID: -784719729
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EmpoweredAttack_8
+      name: ultiEffect_8
       rect:
         serializedVersion: 2
         x: 256
@@ -329,16 +320,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b8f402cb9f4a12650800000000000000
-      internalID: 6206423154003300235
+      spriteID: 02b0fd7aaa9d8a048b11b8ed78b0f2b6
+      internalID: -773172875
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EmpoweredAttack_9
+      name: ultiEffect_9
       rect:
         serializedVersion: 2
         x: 288
@@ -351,10 +342,32 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 93e56de06c931d9d0800000000000000
-      internalID: -2751354374531424711
+      spriteID: 5ecd802b42d06744e8b39b97b0dd6d47
+      internalID: -2143186552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ultiEffect_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f437a56a0d93b1489d1cb0a595caa95
+      internalID: 1198346093
       vertices: []
       indices: 
       edges: []
@@ -363,7 +376,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 098c851260d6d6f4e8a17f556f2c0d64
+    spriteID: bb20659d975fe2c46b57d3bf3698b2c2
     internalID: 0
     vertices: []
     indices: 
@@ -373,16 +386,17 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      EmpoweredAttack_0: 5092722445662816998
-      EmpoweredAttack_1: 3313510183054726675
-      EmpoweredAttack_2: 1048875132107345176
-      EmpoweredAttack_3: -5818992751790100516
-      EmpoweredAttack_4: -6203574497083127701
-      EmpoweredAttack_5: -2903056992061867774
-      EmpoweredAttack_6: 2233342179672465057
-      EmpoweredAttack_7: -1754528195293208490
-      EmpoweredAttack_8: 6206423154003300235
-      EmpoweredAttack_9: -2751354374531424711
+      ultiEffect_0: 907892478117504053
+      ultiEffect_1: -6290649606376554315
+      ultiEffect_10: 1198346093
+      ultiEffect_2: -8381703522518358424
+      ultiEffect_3: -4957003799342721135
+      ultiEffect_4: 8733475234946986788
+      ultiEffect_5: -8141283019011566127
+      ultiEffect_6: -801491056376417058
+      ultiEffect_7: -784719729
+      ultiEffect_8: -773172875
+      ultiEffect_9: -2143186552
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

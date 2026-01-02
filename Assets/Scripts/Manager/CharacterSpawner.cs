@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class SkillTestBootstrap : MonoBehaviour
+public class CharacterSpawner : MonoBehaviour
 {
     [SerializeField] private BaseCharacter _characterPrefab;
     [SerializeField] private CharacterSkillController _skillController;
@@ -16,12 +16,15 @@ public class SkillTestBootstrap : MonoBehaviour
 
         if (!character.TryGetComponent<ISkillUser>(out var skillUser))
         {
-            Debug.LogError("Character does not implement ISkillUser");
             return;
         }
 
-        Debug.Log("aaaaaaaaaaa");
         _skillController.SetCharacter(character, skillUser);
-        Debug.Log("cacmacmacmamcmac");
+        if (character.PoolData == null)
+        {
+            Debug.Log("null roif do con cho ngu");
+        }
+
+       PoolManager.Instance.InitPools(character.PoolData.pools);
     }
 }

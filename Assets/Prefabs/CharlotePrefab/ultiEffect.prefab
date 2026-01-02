@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4979341469215509034
+--- !u!1 &5669650703357329954
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 681624131918458185}
-  - component: {fileID: 5313769376968927519}
-  - component: {fileID: 7037065531318446984}
-  - component: {fileID: 3210207754793990766}
-  - component: {fileID: 7769202404191771509}
+  - component: {fileID: 980370053833218761}
+  - component: {fileID: 2024332847340500749}
+  - component: {fileID: 786146718272424256}
+  - component: {fileID: -8880487119887089154}
+  - component: {fileID: 7135311810382916636}
   m_Layer: 0
-  m_Name: Lightning
+  m_Name: ultiEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &681624131918458185
+--- !u!4 &980370053833218761
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4979341469215509034}
+  m_GameObject: {fileID: 5669650703357329954}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.933, y: -0.376, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -14.860784, y: -3.4810987, z: 0}
+  m_LocalScale: {x: 1.8, y: 1.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &5313769376968927519
+--- !u!212 &2024332847340500749
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4979341469215509034}
+  m_GameObject: {fileID: 5669650703357329954}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -78,25 +78,47 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 419271273
   m_SortingLayer: 6
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 8530889235992783434, guid: 81d7434884d8a8943bcff89177dd9598, type: 3}
+  m_SortingOrder: -1
+  m_Sprite: {fileID: -801491056376417058, guid: 3ca0d3edd2b01284ca3d933130bb44e2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &7037065531318446984
+--- !u!95 &786146718272424256
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5669650703357329954}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6e748b409a342b24987e357d2f1995ac, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!58 &-8880487119887089154
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4979341469215509034}
+  m_GameObject: {fileID: 5669650703357329954}
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
@@ -124,44 +146,17 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.0024971366, y: 0.011386633}
-  m_Radius: 0.64139366
---- !u!95 &3210207754793990766
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4979341469215509034}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 55277bafd9ec3b24aa7160fa754f5740, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7769202404191771509
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 1
+--- !u!114 &7135311810382916636
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4979341469215509034}
+  m_GameObject: {fileID: 5669650703357329954}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d869f97bc84860944a089b1e8dc279ee, type: 3}
+  m_Script: {fileID: 11500000, guid: f0e54ccf94ade59418f644dae3c2a27a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: Lightning
-  _speed: 15
-  _range: 45
-  _force: 6
-  _durationKnockback: 0.12

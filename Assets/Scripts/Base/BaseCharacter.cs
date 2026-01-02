@@ -2,6 +2,9 @@
 
 public class BaseCharacter: MonoBehaviour
 {
+    [SerializeField] private CharacterPoolData _poolData;
+    public CharacterPoolData PoolData => _poolData;
+
     [SerializeField] private CharacterStats _stats;
     [SerializeField] private Joystick _joystick;
     [SerializeField] private GameObject _damageText;
@@ -27,13 +30,13 @@ public class BaseCharacter: MonoBehaviour
         {
             _joystick= FindAnyObjectByType<Joystick>();
         }
-
-        _rb= GetComponent<Rigidbody2D>();
-        _spriteRenderer= GetComponent<SpriteRenderer>();
-        _animator= GetComponent<Animator>();
     }
     private void Start()
     {
+        _rb = GetComponent<Rigidbody2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _animator = GetComponent<Animator>();
+
         _currentHp = _stats.maxHp;
         _currentSpeed= _stats.maxSpeed;
         _isDead = false;
@@ -81,7 +84,7 @@ public class BaseCharacter: MonoBehaviour
             _animator.SetBool("isRunning", false);
         }
 
-        _animator.SetBool("isDead", _isDead);
+        //_animator.SetBool("isDead", _isDead);
     }
     private void Flip()
     {

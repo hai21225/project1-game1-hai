@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: Charlote
   m_EditorClassIdentifier: 
   maxHp: 3600
-  maxSpeed: 10
-  mana: 2
+  maxSpeed: 7
+  mana: 3
   maxDamage: 36
   maxAttackSpeed: 0.3
   rangeAttack: 10
+  damageSkill1: 16
+  damageSkill2: 6
+  damageSkill3: 40

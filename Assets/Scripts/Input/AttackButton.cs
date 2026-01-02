@@ -12,7 +12,7 @@ public class AttackButton : MonoBehaviour,
 
     public bool IsHolding { get; private set; }
     private Coroutine _coroutine;
-    private void Awake()
+    private void Start()
     {
         _rect = GetComponent<RectTransform>();
     }

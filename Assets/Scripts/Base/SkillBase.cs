@@ -5,6 +5,7 @@ public abstract class SkillBase : MonoBehaviour
     public float cooldown;
     protected float lastUseTime;
     public event System.Action OnSkillUsed;
+    public event System.Action<Enemy> OnHitEnemy;
 
     private void Update()
     {
@@ -14,6 +15,11 @@ public abstract class SkillBase : MonoBehaviour
         }
     }
 
+    protected void RaiseHitEnemy(Enemy enemy)
+    {
+        //Debug.Log("checkkkkkdmmmmmm");
+        OnHitEnemy?.Invoke(enemy);
+    }
     public bool CanUse()
     {
         return lastUseTime <= 0f;

@@ -8,7 +8,11 @@ public class Dash : SkillBase
     [SerializeField] private float _dashSpeed = 20f;
     [SerializeField] private float _dashDuration = 0.15f;
     private bool _isDashing = false;
-
+    private SpriteRenderer _spriteRenderer;
+    private void Start()
+    {
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+    }
     protected override void Execute(Vector2 dir)
     {
         if (_isDashing) return;
@@ -25,6 +29,8 @@ public class Dash : SkillBase
         Vector3 targetPos = startPos + (Vector3)(dir * _dashDistance);
 
         float time = 0f;
+        if (Mathf.Abs(dir.x) > 0.01f)
+            _spriteRenderer.flipX = dir.x < 0f;
 
         while (time < _dashDuration)
         {

@@ -13,4 +13,23 @@ public class CharacterStats : ScriptableObject
     public float maxDamage = 36f;
     public float maxAttackSpeed = 36f;
     public float rangeAttack = 36f;
+
+    public float damageSkill1 = 16f;
+    public float damageSkill2 = 5f;
+    public float damageSkill3 = 40f;
+
+    public float GetDamageSkil(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                return damageSkill1;
+                
+            case 1:
+                return damageSkill2;
+            case 2:
+                return damageSkill3;
+            default: return 0f;
+        }
+    }
 }

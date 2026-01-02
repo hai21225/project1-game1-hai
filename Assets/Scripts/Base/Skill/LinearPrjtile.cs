@@ -1,13 +1,21 @@
 ﻿using UnityEngine;
 
-public class LightningLogic : MonoBehaviour,IPoolable
+public class LinearPrjtile : MonoBehaviour,IPoolable
 {
+    [Header("base")]
+    [SerializeField] private string _name;
     [SerializeField] private float _speed = 10f;
     [SerializeField] private float _range = 5f;
+
+    [Header("knockback")]
+    [SerializeField] private float _force = 0f;
+    [SerializeField] private float _durationKnockback = 0.12f;
 
     private bool _canMove;
     private Vector2 _direction;
     private Vector3 _startPosition;
+
+    public event System.Action<Enemy> OnEnemy;
 
     private void Update()
     {
@@ -20,7 +28,7 @@ public class LightningLogic : MonoBehaviour,IPoolable
         if (!_canMove) return;
         transform.Translate(_direction * _speed *Time.deltaTime,Space.World);
         float traveled = (transform.position - _startPosition).sqrMagnitude;
-        if(traveled>= _range)
+        if(traveled>= _range*_range)
         {
             ReturnToPool();
         }
@@ -42,8 +50,6 @@ public class LightningLogic : MonoBehaviour,IPoolable
     {
         if (collision != null)
         {
-            if (collision.CompareTag("Enemy"))
-            {
                 if(collision.TryGetComponent(out Enemy enemy))
                 {
                     //knockback
@@ -52,12 +58,11 @@ public class LightningLogic : MonoBehaviour,IPoolable
                     if (rb != null)
                     {
                         Vector2 knockDir = (collision.transform.position - transform.position).normalized;
-                        enemy.KnockBack(knockDir, 6f, 0.12f);
-                         
-                        enemy.TakeDamage(10);
+                        enemy.KnockBack(knockDir, _force, _durationKnockback);
+                        //enemy.TakeDamage(10);
+                        OnEnemy?.Invoke(enemy);
                     }
                 }
-            }
         }
     }
 
@@ -71,9 +76,10 @@ public class LightningLogic : MonoBehaviour,IPoolable
         _canMove=false;
         _startPosition= Vector2.zero;
         _direction=Vector2.zero;
+        OnEnemy = null;
     }
     private void ReturnToPool()
     {
-        PoolManager.Instance.Despawn("Lightning", gameObject);
+        PoolManager.Instance.Despawn(_name, gameObject);
     }
 }

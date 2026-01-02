@@ -44,6 +44,7 @@ public class EnergyProjectile : MonoBehaviour, IPoolable
 
     public void OnDespawn()
     {
+        _target= null;
         OnHitEnemy= null;
     }
 }

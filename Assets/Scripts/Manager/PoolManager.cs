@@ -14,24 +14,48 @@ public class PoolManager: MonoBehaviour
     }
 
     [SerializeField] private Pool[] pools;
-    private Dictionary<string, Queue<GameObject>> poolDict;
+    private Dictionary<string, Queue<GameObject>> poolDict = new();
+
+    //private void Awake()
+    //{
+    //    Instance= this;
+    //    foreach(var pool in pools)
+    //    {
+    //        var queue= new Queue<GameObject>();
+    //        for(int i=0; i<pool.size; i++)
+    //        {
+    //            var obj= Instantiate(pool.prefab,transform);
+    //            obj.SetActive(false);
+    //            queue.Enqueue(obj);
+    //        }
+    //        poolDict.Add(pool.name, queue);
+    //    }
+    //}
 
     private void Awake()
     {
-        Instance= this;
-        poolDict= new Dictionary<string, Queue<GameObject>>();
-        foreach(var pool in pools)
+        Instance = this;
+    }
+    public void InitPools(Pool[] newPools)
+    {
+        poolDict.Clear();
+
+        foreach (Transform child in transform)
+            Destroy(child.gameObject);
+
+        foreach (var pool in newPools)
         {
-            var queue= new Queue<GameObject>();
-            for(int i=0; i<pool.size; i++)
+            var queue = new Queue<GameObject>();
+            for (int i = 0; i < pool.size; i++)
             {
-                var obj= Instantiate(pool.prefab,transform);
+                var obj = Instantiate(pool.prefab, transform);
                 obj.SetActive(false);
                 queue.Enqueue(obj);
             }
             poolDict.Add(pool.name, queue);
         }
     }
+
     public GameObject Spawn(string name, Vector3 pos, Quaternion rotation)
     {
         if (!poolDict.TryGetValue(name, out var queue))
