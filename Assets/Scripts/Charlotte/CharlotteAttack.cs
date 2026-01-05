@@ -80,7 +80,7 @@ public class CharlotteAttack: MonoBehaviour,IAttackExecutor
 
     private void NormalAttack(Transform target)
     {
-        var obj = PoolManager.Instance.Spawn(_normalAttack, target.position,Quaternion.identity).GetComponent<SlashAttack>();
+        var obj = PoolManager.Instance.Spawn(PoolGroup.Character, _normalAttack, target.position,Quaternion.identity).GetComponent<SlashAttack>();
         obj.Init(target,transform);
         obj.OnSpawn();  
 
@@ -93,7 +93,7 @@ public class CharlotteAttack: MonoBehaviour,IAttackExecutor
     private void EmpoweredAttack(Transform target)
     {
         transform.position = target.position; 
-        var obj = PoolManager.Instance.Spawn(_empoweredAttack, target.position, Quaternion.identity)
+        var obj = PoolManager.Instance.Spawn(PoolGroup.Character,_empoweredAttack, target.position, Quaternion.identity)
             .GetComponent<SlashAttack>();
         obj .Init(target,transform);
         obj.OnSpawn();

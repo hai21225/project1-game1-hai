@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private Enemy _enemyPrefab;
+    [SerializeField] private string _enemyPoolName;
     [SerializeField] private int _countPerWave = 5;
     [SerializeField] private float _spawnRadius = 2f;
     [SerializeField] private float _delayBetweenWaves = 2f;
 
-    private readonly List<Enemy> _aliveEnemies = new();
+    private readonly List<EnemyController> _aliveEnemies = new();
     private bool _isSpawning;
 
     private void Start()
@@ -28,20 +28,23 @@ public class EnemySpawner : MonoBehaviour
             Vector2 pos =
                 (Vector2)transform.position +
                 Random.insideUnitCircle * _spawnRadius;
+            var obj = PoolManager.Instance.Spawn(PoolGroup.Common,_enemyPoolName,pos,Quaternion.identity);
 
-            Enemy enemy = Instantiate(_enemyPrefab, pos, Quaternion.identity);
-            enemy.Init(this);                // 👈 gán spawner ở đây
+            if (obj == null) continue;
+
+            var enemy = obj.GetComponent<EnemyController>();
+            enemy.Init(this);
+            enemy.OnSpawn();
             _aliveEnemies.Add(enemy);
         }
 
         _isSpawning = false;
     }
 
-    public void NotifyEnemyDead(Enemy enemy)
+    public void NotifyEnemyDead(EnemyController enemy)
     {
         _aliveEnemies.Remove(enemy);
-
-        // Hết enemy → spawn wave mới
+        Debug.Log("checkkkk :   "+_aliveEnemies.Count);
         if (_aliveEnemies.Count == 0 && !_isSpawning)
         {
             StartCoroutine(SpawnWave());

@@ -5,7 +5,7 @@ public abstract class SkillBase : MonoBehaviour
     public float cooldown;
     protected float lastUseTime;
     public event System.Action OnSkillUsed;
-    public event System.Action<Enemy> OnHitEnemy;
+    public event System.Action<EnemyHealth> OnHitEnemy;
 
     private void Update()
     {
@@ -15,7 +15,7 @@ public abstract class SkillBase : MonoBehaviour
         }
     }
 
-    protected void RaiseHitEnemy(Enemy enemy)
+    protected void RaiseHitEnemy(EnemyHealth enemy)
     {
         //Debug.Log("checkkkkkdmmmmmm");
         OnHitEnemy?.Invoke(enemy);
@@ -25,9 +25,9 @@ public abstract class SkillBase : MonoBehaviour
         return lastUseTime <= 0f;
     }
 
-    public void TryUse(Vector2 dir)
+    public void TryUse(Vector2 dir,bool ignoreCooldown= false)
     {
-        if (!CanUse()) return;
+        if (!ignoreCooldown&&!CanUse()) return;
 
         lastUseTime = cooldown;
         Execute(dir);

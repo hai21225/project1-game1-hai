@@ -10,17 +10,17 @@ public class ChainLightningController : MonoBehaviour
     private float _damage;
     [SerializeField] private float _damageMultiplier = 0.36f;
 
-    public void Execute(Enemy firstTarget)
+    public void Execute(EnemyHealth firstTarget)
     {
         StartCoroutine(Chain(firstTarget));
     }
 
-    private IEnumerator Chain(Enemy first)
+    private IEnumerator Chain(EnemyHealth first)
     {
         _damage=_stats.maxDamage;
         float damage = _damage;
-        Enemy current = first;
-        HashSet<Enemy> hit = new();
+        EnemyHealth current = first;
+        HashSet<EnemyHealth> hit = new();
         Vector3 lastHitPos = current.transform.position;
         for (int i = 0; i < _maxChain; i++)
         {
@@ -30,10 +30,10 @@ public class ChainLightningController : MonoBehaviour
             current.TakeDamage(damage);
             hit.Add(current);
 
-            Enemy next = FindNext(lastHitPos, hit);
+            EnemyHealth next = FindNext(lastHitPos, hit);
             if (next == null) yield break;
 
-            var fx = PoolManager.Instance.Spawn(
+            var fx = PoolManager.Instance.Spawn(PoolGroup.Character,
                         "ChainLightning",
                         Vector3.zero,
                         Quaternion.identity
@@ -51,19 +51,19 @@ public class ChainLightningController : MonoBehaviour
         }
     }
 
-    private Enemy FindNext(Vector3 fromPos, HashSet<Enemy> hitEnemies)
+    private EnemyHealth FindNext(Vector3 fromPos, HashSet<EnemyHealth> hitEnemies)
     {
 
         Collider2D[] hits = Physics2D.OverlapCircleAll(fromPos, _range);
 
-        Enemy nearestEnemy = null;
+        EnemyHealth nearestEnemy = null;
         float minDist = float.MaxValue;
 
         foreach (var hit in hits)
         {
             if (!hit.CompareTag("Enemy")) continue;
 
-            if (hit.TryGetComponent(out Enemy enemy))
+            if (hit.TryGetComponent(out EnemyHealth enemy))
             {
                 if (hitEnemies.Contains(enemy)) continue;
                 float sqrDist = (enemy.transform.position - fromPos).sqrMagnitude;

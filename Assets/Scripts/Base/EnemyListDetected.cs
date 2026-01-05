@@ -1,30 +1,38 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemyListDetected : MonoBehaviour
 {
     [SerializeField] private float _attackRadius = 1.5f;
     [SerializeField] private LayerMask _enemyLayer;
-    
-    public Enemy Detected()
+
+    private readonly Collider2D[] _hits = new Collider2D[8];
+
+    public BaseEnemy Detected()
     {
+        int count = Physics2D.OverlapCircleNonAlloc(
+            transform.position,
+            _attackRadius,
+            _hits,
+            _enemyLayer
+        );
 
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, _attackRadius,_enemyLayer);
+        if (count == 0) return null;
 
-        if (hits.Length == 0) return null;
-        Enemy closestenemy = null;
-        float mindistance = 99999f;
-        foreach (var hit in hits)
+        BaseEnemy closestEnemy = null;
+        float minDistance = float.MaxValue;
+
+        for (int i = 0; i < count; i++)
         {
-            if (!hit.TryGetComponent(out Enemy enemy )) continue;
-            float distance = (enemy.transform.position - this.transform.position).sqrMagnitude; 
-            if( distance < mindistance)
+            if (!_hits[i].TryGetComponent(out BaseEnemy enemy)) continue;
+
+            float dist = (enemy.transform.position - transform.position).sqrMagnitude;
+            if (dist < minDistance)
             {
-                mindistance= distance;
-                closestenemy= enemy;
+                minDistance = dist;
+                closestEnemy = enemy;
             }
         }
-        return closestenemy;
+        return closestEnemy;
     }
 
     private void OnDrawGizmosSelected()
@@ -32,7 +40,4 @@ public class EnemyListDetected : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, _attackRadius);
     }
-
-
-
 }

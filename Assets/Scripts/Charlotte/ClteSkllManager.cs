@@ -40,7 +40,7 @@ public class ClteSkllManager : MonoBehaviour,ISkillUser
         LockMovement();
         Invoke(nameof(UnlockMovement), 0.6f);
     }
-    private void Skill1HandleEnemyHit(Enemy enemy)
+    private void Skill1HandleEnemyHit(EnemyHealth enemy)
     {
         enemy.TakeDamage(_stats.damageSkill1);
         if(_empowered) { return; }
@@ -48,7 +48,7 @@ public class ClteSkllManager : MonoBehaviour,ISkillUser
         _empowered=true;
         _attack.SetEmpoweredAttack();
     }
-    private void Skill2HandleEnemyHit(Enemy enemy)
+    private void Skill2HandleEnemyHit(EnemyHealth enemy)
     {
         enemy.TakeDamage(_stats.damageSkill2);
         if (_empowered) { return; }
@@ -57,7 +57,7 @@ public class ClteSkllManager : MonoBehaviour,ISkillUser
         _attack.SetEmpoweredAttack();
 
     }
-    private void Skill3HandleEnemyHit(Enemy enemy)
+    private void Skill3HandleEnemyHit(EnemyHealth enemy)
     {
         enemy.TakeDamage(_stats.damageSkill3);
         if (_empowered) { return; }

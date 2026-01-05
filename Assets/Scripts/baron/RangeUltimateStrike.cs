@@ -9,12 +9,12 @@ public class RangeUltimateStrike : MonoBehaviour
     [SerializeField] private float _damage = 0.15f;
 
     private Coroutine _coroutine;
-    private List<Enemy> _enemiesInRange = new List<Enemy>(4);
-    private List<Enemy> _pendingAdd = new(4);
-    private List<Enemy> _pendingRemove = new(4);
+    private List<EnemyHealth> _enemiesInRange = new(4);
+    private List<EnemyHealth> _pendingAdd = new(4);
+    private List<EnemyHealth> _pendingRemove = new(4);
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent(out Enemy enemy))
+        if (collision.TryGetComponent(out EnemyHealth enemy))
         {
             if (!_enemiesInRange.Contains(enemy) && !_pendingAdd.Contains(enemy))
                 _pendingAdd.Add(enemy);
@@ -22,7 +22,7 @@ public class RangeUltimateStrike : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.TryGetComponent(out Enemy enemy))
+        if (collision.TryGetComponent(out EnemyHealth enemy))
         {
             if (!_pendingRemove.Contains(enemy))
                 _pendingRemove.Add(enemy);
@@ -73,14 +73,14 @@ public class RangeUltimateStrike : MonoBehaviour
 
             for (int i = _enemiesInRange.Count - 1; i >= 0; i--)
             {
-                Enemy enemy = _enemiesInRange[i];
+                EnemyHealth enemy = _enemiesInRange[i];
                 if (enemy == null)
                 {
                     _enemiesInRange.RemoveAt(i);
                     continue;
                 }
                 _enemiesInRange[i].TakeDamage(_damage*21f);
-                var obj= PoolManager.Instance.Spawn("ChainLightningUlti",_lightningPos.transform.position,Quaternion.identity)
+                var obj= PoolManager.Instance.Spawn(PoolGroup.Character, "ChainLightningUlti",_lightningPos.transform.position,Quaternion.identity)
                     .GetComponent<ChainLightningEffect>();
                 obj.Init(_lightningPos.transform.position, _enemiesInRange[i].transform.position, "ChainLightningUlti");
                 obj.OnSpawn();  

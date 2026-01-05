@@ -1,23 +1,14 @@
 ﻿using TMPro;
 using UnityEngine;
 
-public class DamageText: MonoBehaviour
+public class DamageText: MonoBehaviour,IPoolable
 {
-    /// <summary>
-    /// maybe upgrade to object pooling
-    /// </summary>
-
+    [SerializeField] private string _namePool;
     [SerializeField] private float _moveUpSpeed= 1f;
     [SerializeField] private float _lifeTime = 0.5f;
 
     [SerializeField] private TextMeshProUGUI _textMesh;
     private  Color _color;
-
-    private void Start()
-    {
-        _color = _textMesh.color;
-    }
-
     public void SetDamage(float damage)
     {
         _textMesh.text = (damage).ToString();
@@ -32,8 +23,22 @@ public class DamageText: MonoBehaviour
 
         if (_color.a <= 0)
         {
-            Destroy(gameObject);
+            ReturnToPool();
         }
+    }
+
+    public void OnSpawn()
+    {
+        _color = _textMesh.color;
+    }
+
+    public void OnDespawn()
+    {
+       
+    }
+    private void ReturnToPool()
+    {
+        PoolManager.Instance.Despawn(PoolGroup.Common, _namePool, gameObject);
     }
 
 }

@@ -2,19 +2,15 @@
 
 public class BaseCharacter: MonoBehaviour
 {
-    [SerializeField] private CharacterPoolData _poolData;
-    public CharacterPoolData PoolData => _poolData;
+    [SerializeField] private PoolData _poolData;
+    public PoolData PoolData => _poolData;
 
     [SerializeField] private CharacterStats _stats;
     [SerializeField] private Joystick _joystick;
-    [SerializeField] private GameObject _damageText;
-    [SerializeField] private Transform _damageTextPos;
+    [SerializeField] private CharacterHealth _health;
 
-    private float _currentHp=0f;
-    private float _currentSpeed=0f;
     private float _horizontal=0f;
     private float _vertical = 0f;
-    private float _timeSlow=0f;
     private bool _isDead =false;
 
     private Rigidbody2D _rb;
@@ -36,12 +32,11 @@ public class BaseCharacter: MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
-
-        _currentHp = _stats.maxHp;
-        _currentSpeed= _stats.maxSpeed;
         _isDead = false;
 
         CameraManager.Instance.SetTarget(transform);
+        _health.OnDead += () => { _isDead = true; };
+
     }
     private void FixedUpdate()
     {
@@ -51,12 +46,11 @@ public class BaseCharacter: MonoBehaviour
     {
         UpdateAnimation();
         Flip();
-        ResetSpeed();
     }
 
     private void Movement()
     {
-        if(_isDead) return;
+        if (_isDead) { _rb.linearVelocity = Vector2.zero; return; }
 
         //_horizontal = _joystick.Horizontal;
         //_vertical = _joystick.Vertical;
@@ -69,7 +63,7 @@ public class BaseCharacter: MonoBehaviour
         {
             FacingDirection = new Vector2(move.x, move.y).normalized;
         }
-        var moveNormalized = move.normalized * _currentSpeed;
+        var moveNormalized = move.normalized * _stats.maxSpeed;
 
         _rb.linearVelocity = new Vector3(moveNormalized.x, moveNormalized.y, 0f);
 
@@ -84,7 +78,7 @@ public class BaseCharacter: MonoBehaviour
             _animator.SetBool("isRunning", false);
         }
 
-        //_animator.SetBool("isDead", _isDead);
+        _animator.SetBool("isDead", _isDead);
     }
     private void Flip()
     {
@@ -97,55 +91,9 @@ public class BaseCharacter: MonoBehaviour
             _spriteRenderer.flipX= true;
         }
     }
-    private void Die()
-    {
-        _isDead = true;
-        Debug.Log("nguuu");
-    }
-    private void ResetHp()
-    {
-        
-    }
-    private void ResetSpeed()
-    {
-        if(_currentSpeed<_stats.maxSpeed)
-        {
-            _timeSlow -= Time.deltaTime;
-            if(_timeSlow < 0f)
-            {
-                _timeSlow = 0f;
-                _currentSpeed= _stats.maxSpeed;
-            }
-        }
-    }
-    private void ShowDamage(float damage)
-    {
-        GameObject dmgText = Instantiate(
-            _damageText,
-            _damageTextPos.position,
-            Quaternion.identity
-        );
-        dmgText.GetComponent<DamageText>().SetDamage(damage);
-    }
+
+
 
     //API//
-    public void TakeDamage(float damage)
-    {
-        _currentHp -= damage;
-        ShowDamage(damage);
-        if (_currentHp <= 0f)
-        {
-            Die();
-        }
-    }
-    public void Slow(float amountSpeedPercent, float timeSlow)
-    {
-        _currentSpeed =_stats.maxSpeed* amountSpeedPercent;
-        _timeSlow = timeSlow;
-    }
-    public void Knockback(Vector2 dir)
-    {
-
-    }
     
 }

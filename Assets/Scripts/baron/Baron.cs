@@ -8,7 +8,7 @@ public enum UltimateState
     Landing,
     LightningGod
 }
-public class Baron : MonoBehaviour,ISkillUser
+public class Baron : MonoBehaviour//,ISkillUser
 {
     [SerializeField] private GameObject _ultimateEffect;
     [SerializeField] private GameObject _rangeStrike;
@@ -114,7 +114,7 @@ public class Baron : MonoBehaviour,ISkillUser
             _isFreeCooldownFromAttack = false;
             _attack.ResetAmountAttack();
         }
-        var obj = PoolManager.Instance.Spawn("Lightning", transform.position, Quaternion.identity)
+        var obj = PoolManager.Instance.Spawn(PoolGroup.Character,"Lightning", transform.position, Quaternion.identity)
             .GetComponent<LinearPrjtile>();
         obj.SetDirection(direction);
     }

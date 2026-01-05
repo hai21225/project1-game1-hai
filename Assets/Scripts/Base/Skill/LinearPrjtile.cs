@@ -15,7 +15,7 @@ public class LinearPrjtile : MonoBehaviour,IPoolable
     private Vector2 _direction;
     private Vector3 _startPosition;
 
-    public event System.Action<Enemy> OnEnemy;
+    public event System.Action<EnemyHealth> OnEnemy;
 
     private void Update()
     {
@@ -50,7 +50,7 @@ public class LinearPrjtile : MonoBehaviour,IPoolable
     {
         if (collision != null)
         {
-                if(collision.TryGetComponent(out Enemy enemy))
+                if(collision.TryGetComponent(out EnemyHealth enemy))
                 {
                     //knockback
                     // take dame
@@ -58,7 +58,7 @@ public class LinearPrjtile : MonoBehaviour,IPoolable
                     if (rb != null)
                     {
                         Vector2 knockDir = (collision.transform.position - transform.position).normalized;
-                        enemy.KnockBack(knockDir, _force, _durationKnockback);
+                        //enemy.KnockBack(knockDir, _force, _durationKnockback);
                         //enemy.TakeDamage(10);
                         OnEnemy?.Invoke(enemy);
                     }
@@ -80,6 +80,6 @@ public class LinearPrjtile : MonoBehaviour,IPoolable
     }
     private void ReturnToPool()
     {
-        PoolManager.Instance.Despawn(_name, gameObject);
+        PoolManager.Instance.Despawn(PoolGroup.Character, _name, gameObject);
     }
 }

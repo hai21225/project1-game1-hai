@@ -5,7 +5,7 @@ public class Dash : SkillBase
 {
 
     [SerializeField] private float _dashDistance = 5f;
-    [SerializeField] private float _dashSpeed = 20f;
+    //[SerializeField] private float _dashSpeed = 20f;
     [SerializeField] private float _dashDuration = 0.15f;
     private bool _isDashing = false;
     private SpriteRenderer _spriteRenderer;

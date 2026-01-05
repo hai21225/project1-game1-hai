@@ -793,7 +793,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000f9291f84ff5cb666c58d7a1b0fe1cba16992fd18cb23d8592946a068b7344185f38184fd
+  m_ApplyToSortingLayers: 00000000f9291f84ff5cb666c58d7a1b0fe1cba16992fd18cb23d8592946a068b7344185f38184fd91d0f496
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -4833,7 +4833,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: -41647629
+  m_SortingLayerID: -1762340719
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &779350057
@@ -4936,7 +4936,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 004c81df925fedb4d976218d897390f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefab: {fileID: 5113246170574762464, guid: 50517454bc63da1468e08dc7711c526e, type: 3}
+  _enemyPoolName: BigDemon
   _countPerWave: 5
   _spawnRadius: 2
   _delayBetweenWaves: 2
@@ -10078,7 +10078,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9bff199160a62747b6c2f61e3c4b457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characterPrefab: {fileID: 4494482190973500662, guid: 75c3d3cc3c925534ca0735a93968f38d, type: 3}
   _skillController: {fileID: 779350060}
   _spawnPos: {x: -18.22, y: -2.95, z: 0.02960083}
 --- !u!4 &848886636

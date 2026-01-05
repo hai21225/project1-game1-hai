@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b37187d514c92f4c9bb8903a5acc755, type: 3}
+  m_Name: CharlotteSelectItem
+  m_EditorClassIdentifier: 
+  characterId: Charlotte
+  portrait: {fileID: 4723107735738678597, guid: e78cf742cf69e99488881755e91d5798, type: 3}
+  characterPrefab: {fileID: 4494482190973500662, guid: 75c3d3cc3c925534ca0735a93968f38d, type: 3}

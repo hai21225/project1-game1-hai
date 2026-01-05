@@ -2,7 +2,7 @@
 
 public class EnergyProjectile : MonoBehaviour, IPoolable
 {
-    public System.Action<Enemy> OnHitEnemy;
+    public System.Action<EnemyHealth> OnHitEnemy;
 
     private Transform _target;
     [SerializeField] private float _speed = 21f;
@@ -16,7 +16,7 @@ public class EnergyProjectile : MonoBehaviour, IPoolable
     {
         if (_target == null)
         {
-            PoolManager.Instance.Despawn("EnergyProjectile", gameObject);
+            PoolManager.Instance.Despawn(PoolGroup.Character, "EnergyProjectile", gameObject);
             return;
         }
 
@@ -30,10 +30,10 @@ public class EnergyProjectile : MonoBehaviour, IPoolable
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy") &&
-            collision.TryGetComponent(out Enemy enemy))
+            collision.TryGetComponent(out EnemyHealth enemy))
         {
             OnHitEnemy?.Invoke(enemy);
-            PoolManager.Instance.Despawn("EnergyProjectile", gameObject);
+            PoolManager.Instance.Despawn(PoolGroup.Character, "EnergyProjectile", gameObject);
         }
     }
 

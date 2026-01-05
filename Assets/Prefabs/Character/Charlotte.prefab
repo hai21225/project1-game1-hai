@@ -23,7 +23,8 @@ GameObject:
   - component: {fileID: 2071678607577243538}
   - component: {fileID: 5136673439532991452}
   - component: {fileID: 2531502231768576132}
-  m_Layer: 0
+  - component: {fileID: 4803258246556771641}
+  m_Layer: 3
   m_Name: Charlotte
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -125,8 +126,7 @@ MonoBehaviour:
   _poolData: {fileID: 11400000, guid: 969daeb3664b5c043b84799b84708331, type: 2}
   _stats: {fileID: 11400000, guid: e090588649007e449be2ddd113bb04c9, type: 2}
   _joystick: {fileID: 0}
-  _damageText: {fileID: 3391923251073565160, guid: 5c4305f735954a941a08aec80fcf2ad5, type: 3}
-  _damageTextPos: {fileID: 270465384125940968}
+  _health: {fileID: 4803258246556771641}
 --- !u!95 &1456939245404739085
 Animator:
   serializedVersion: 7
@@ -302,7 +302,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 0
   _dashDistance: 5
-  _dashSpeed: 20
   _dashDuration: 0.15
 --- !u!114 &-3925628733100862939
 MonoBehaviour:
@@ -368,6 +367,22 @@ MonoBehaviour:
   _skill2: {fileID: 6261564271150840629}
   _timeExist: 0.2
   _trigger: {fileID: 5546645716325670126}
+--- !u!114 &4803258246556771641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827253945837704654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26926c0bfb9f24483502a8f22593c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stats: {fileID: 11400000, guid: e090588649007e449be2ddd113bb04c9, type: 2}
+  _health: 0
+  _healthbar: {fileID: 6118809759147700891}
+  _damageTextPos: {fileID: 270465384125940968}
 --- !u!1 &1050609374850134838
 GameObject:
   m_ObjectHideFlags: 0
@@ -842,6 +857,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2891799513188905136}
     m_Modifications:
+    - target: {fileID: 1701825552696301007, guid: 4aa90d246f4e9c8468866a98b7982ed1, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2494100644799159950, guid: 4aa90d246f4e9c8468866a98b7982ed1, type: 3}
       propertyPath: m_SortingLayerID
       value: 419271273
@@ -849,6 +868,10 @@ PrefabInstance:
     - target: {fileID: 5628135156046111692, guid: 4aa90d246f4e9c8468866a98b7982ed1, type: 3}
       propertyPath: m_Name
       value: Hp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5628135156046111692, guid: 4aa90d246f4e9c8468866a98b7982ed1, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5754985510848696586, guid: 4aa90d246f4e9c8468866a98b7982ed1, type: 3}
       propertyPath: m_Pivot.x
@@ -930,11 +953,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8319577654985535585, guid: 4aa90d246f4e9c8468866a98b7982ed1, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4aa90d246f4e9c8468866a98b7982ed1, type: 3}
+--- !u!114 &6118809759147700891 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4789497402060353559, guid: 4aa90d246f4e9c8468866a98b7982ed1, type: 3}
+  m_PrefabInstance: {fileID: 1629695638491333260}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &6431148345878614918 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5754985510848696586, guid: 4aa90d246f4e9c8468866a98b7982ed1, type: 3}
@@ -992,6 +1030,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ultiEffect
       objectReference: {fileID: 0}
+    - target: {fileID: 5669650703357329954, guid: 2ad7f8d7ca6b45842b72db0c47cb86f5, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1033,6 +1075,10 @@ PrefabInstance:
     - target: {fileID: 903298837076968750, guid: f7dd6c3187a1f5546a0c15b76508cd23, type: 3}
       propertyPath: m_Name
       value: Mana
+      objectReference: {fileID: 0}
+    - target: {fileID: 903298837076968750, guid: f7dd6c3187a1f5546a0c15b76508cd23, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 959229680367646696, guid: f7dd6c3187a1f5546a0c15b76508cd23, type: 3}
       propertyPath: m_Pivot.x
@@ -1114,6 +1160,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3595875087100384899, guid: f7dd6c3187a1f5546a0c15b76508cd23, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6128299347212661549, guid: f7dd6c3187a1f5546a0c15b76508cd23, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6921713533321787500, guid: f7dd6c3187a1f5546a0c15b76508cd23, type: 3}
       propertyPath: m_SortingLayerID
       value: 419271273
@@ -1150,6 +1204,10 @@ PrefabInstance:
     - target: {fileID: 3823256725214903505, guid: f264bffc3912e2044bfd0c32b79c7599, type: 3}
       propertyPath: m_Name
       value: Skill2Effect
+      objectReference: {fileID: 0}
+    - target: {fileID: 3823256725214903505, guid: f264bffc3912e2044bfd0c32b79c7599, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4900105878487001241, guid: f264bffc3912e2044bfd0c32b79c7599, type: 3}
       propertyPath: m_LocalPosition.x

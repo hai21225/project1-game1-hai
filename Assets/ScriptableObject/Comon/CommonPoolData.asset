@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5188414cb6a4caa45a448d94fd070168, type: 3}
+  m_Name: CommonPoolData
+  m_EditorClassIdentifier: 
+  pools:
+  - name: BigDemon
+    prefab: {fileID: 3154872599091649877, guid: 50517454bc63da1468e08dc7711c526e, type: 3}
+    size: 10
+  - name: DamageText
+    prefab: {fileID: 3391923251073565160, guid: 5c4305f735954a941a08aec80fcf2ad5, type: 3}
+    size: 50

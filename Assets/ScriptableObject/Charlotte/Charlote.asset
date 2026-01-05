@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17ac9508c2695bf4cbc1b0550f1db1de, type: 3}
   m_Name: Charlote
   m_EditorClassIdentifier: 
-  maxHp: 3600
+  maxHp: 360
   maxSpeed: 7
   mana: 3
   maxDamage: 36

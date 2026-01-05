@@ -7,7 +7,7 @@ public class ShootSkill : SkillBase
 
     protected override void Execute(Vector2 dir)
     {
-        var obj = PoolManager.Instance.Spawn(_name, transform.position, Quaternion.identity)
+        var obj = PoolManager.Instance.Spawn(PoolGroup.Character, _name, transform.position, Quaternion.identity)
             .GetComponent<LinearPrjtile>();
         obj.SetDirection(dir);
 

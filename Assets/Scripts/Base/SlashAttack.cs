@@ -5,7 +5,7 @@ public class SlashAttack : MonoBehaviour, IPoolable
     [SerializeField] private string _name;
     [SerializeField] private float _lifeTime;
 
-    public System.Action<Enemy> OnHitEnemy;
+    public System.Action<EnemyHealth> OnHitEnemy;
     private Transform _target;
     private Transform _player;
     public void Init(Transform target,Transform player)
@@ -18,7 +18,7 @@ public class SlashAttack : MonoBehaviour, IPoolable
     {
         if (collision.CompareTag("Enemy"))
         {
-            if(collision.TryGetComponent(out Enemy enemy))
+            if(collision.TryGetComponent(out EnemyHealth enemy))
                 OnHitEnemy.Invoke(enemy);
         }
     }
@@ -55,6 +55,6 @@ public class SlashAttack : MonoBehaviour, IPoolable
 
     private void ReturnToPool()
     {
-        PoolManager.Instance.Despawn(_name,gameObject);
+        PoolManager.Instance.Despawn(PoolGroup.Character, _name,gameObject);
     }
 }

@@ -2,14 +2,22 @@
 
 public class CharacterSpawner : MonoBehaviour
 {
-    [SerializeField] private BaseCharacter _characterPrefab;
     [SerializeField] private CharacterSkillController _skillController;
     [SerializeField] private Vector3 _spawnPos = Vector3.zero;
 
     private void Start()
     {
+        var prefab = GameManager.Instance.SelectedCharacter;
+
+
+        if (prefab == null)
+        {
+            Debug.LogError("No character prefab!");
+            return;
+        }
+
         BaseCharacter character = Instantiate(
-            _characterPrefab,
+            prefab,
             _spawnPos,
             Quaternion.identity
         );
@@ -20,11 +28,7 @@ public class CharacterSpawner : MonoBehaviour
         }
 
         _skillController.SetCharacter(character, skillUser);
-        if (character.PoolData == null)
-        {
-            Debug.Log("null roif do con cho ngu");
-        }
 
-       PoolManager.Instance.InitPools(character.PoolData.pools);
+       //PoolManager.Instance.InitPools(character.PoolData.pools);
     }
 }

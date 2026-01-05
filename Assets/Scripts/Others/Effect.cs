@@ -17,6 +17,6 @@ public class Effect : MonoBehaviour, IPoolable
 
     private void ReturnToPool()
     {
-        PoolManager.Instance.Despawn(_name, gameObject);
+        PoolManager.Instance.Despawn(PoolGroup.Character,_name, gameObject);
     }
 }

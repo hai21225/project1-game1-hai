@@ -14,7 +14,7 @@ public class EmpweredPrjtile : MonoBehaviour,IPoolable
         {
             if (collision.CompareTag("Enemy"))
             {
-                if(collision.TryGetComponent(out Enemy enemy))
+                if(collision.TryGetComponent(out EnemyHealth enemy))
                 {
                     enemy.TakeDamage(35f);
                     
@@ -55,6 +55,6 @@ public class EmpweredPrjtile : MonoBehaviour,IPoolable
     }
     private void ReturnToPool()
     {
-        PoolManager.Instance.Despawn("EmpoweredProjectile", gameObject);
+        PoolManager.Instance.Despawn(PoolGroup.Character,"EmpoweredProjectile", gameObject);
     }
 }

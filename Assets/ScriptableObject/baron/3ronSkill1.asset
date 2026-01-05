@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: skill1
   icon: {fileID: 21300000, guid: bc7daf858d8f172458dc17216ab6d211, type: 3}
-  cooldown: 0
+  cooldown: 5
   needDirection: 0
