@@ -7,7 +7,6 @@ public class AttackController: MonoBehaviour
     [SerializeField] private GameObject _indicator;
     private float _attackSpeed = 0f;
     private float _timer = 0f;
-    private float _timeSlowDuration = 0f;
 
     private AttackButton _button;
     private IAttackExecutor _executor;
@@ -26,7 +25,6 @@ public class AttackController: MonoBehaviour
     {
         if (_button == null) return;
         _timer-= Time.deltaTime;
-        ResetSpeed();
         if (!_button.IsHolding)
         {
             return;
@@ -42,19 +40,6 @@ public class AttackController: MonoBehaviour
         _timer = _attackSpeed;
         _executor.ExecuteAttack(target);
     }
-
-    private void ResetSpeed()
-    {
-        if(_timeSlowDuration > 0f)
-        {
-            _timeSlowDuration-= Time.deltaTime;
-            if(_timeSlowDuration < 0f)
-            {
-                _timeSlowDuration = 0f;
-                _attackSpeed = _stats.maxAttackSpeed;
-            }
-        }
-    }
     private void ShowIndicator()
     {
         if (_indicator == null) return;
@@ -65,12 +50,4 @@ public class AttackController: MonoBehaviour
     {
         _indicator.SetActive(false);
     }
-
-    //API
-    public void Slow(float slowPercent, float duration)
-    {
-        _attackSpeed += slowPercent * _stats.maxAttackSpeed;
-        _timeSlowDuration = duration;
-    }
-
 }

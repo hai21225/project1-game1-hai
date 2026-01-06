@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 5136673439532991452}
   - component: {fileID: 2531502231768576132}
   - component: {fileID: 4803258246556771641}
+  - component: {fileID: -1558690681332776983}
   m_Layer: 3
   m_Name: Charlotte
   m_TagString: Player
@@ -123,7 +124,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a80fed8967ebf06439313883d4cf1e8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _poolData: {fileID: 11400000, guid: 969daeb3664b5c043b84799b84708331, type: 2}
   _stats: {fileID: 11400000, guid: e090588649007e449be2ddd113bb04c9, type: 2}
   _joystick: {fileID: 0}
   _health: {fileID: 4803258246556771641}
@@ -383,6 +383,21 @@ MonoBehaviour:
   _health: 0
   _healthbar: {fileID: 6118809759147700891}
   _damageTextPos: {fileID: 270465384125940968}
+--- !u!114 &-1558690681332776983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827253945837704654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d1b7546f351cc14b92a1ada8df5529a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _poolData: {fileID: 11400000, guid: 969daeb3664b5c043b84799b84708331, type: 2}
+  _health: {fileID: 4803258246556771641}
+  _move: {fileID: 4494482190973500662}
 --- !u!1 &1050609374850134838
 GameObject:
   m_ObjectHideFlags: 0

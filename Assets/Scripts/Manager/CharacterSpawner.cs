@@ -3,6 +3,7 @@
 public class CharacterSpawner : MonoBehaviour
 {
     [SerializeField] private CharacterSkillController _skillController;
+    [SerializeField] private UIManager _manager;
     [SerializeField] private Vector3 _spawnPos = Vector3.zero;
 
     private void Start()
@@ -18,9 +19,9 @@ public class CharacterSpawner : MonoBehaviour
 
         BaseCharacter character = Instantiate(
             prefab,
-            _spawnPos,
+            _spawnPos * Random.Range(0, 2f),
             Quaternion.identity
-        );
+        ); ;
 
         if (!character.TryGetComponent<ISkillUser>(out var skillUser))
         {
@@ -28,7 +29,7 @@ public class CharacterSpawner : MonoBehaviour
         }
 
         _skillController.SetCharacter(character, skillUser);
-
+        _manager.SetCharacter(character);
        //PoolManager.Instance.InitPools(character.PoolData.pools);
     }
 }

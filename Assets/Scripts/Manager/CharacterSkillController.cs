@@ -11,7 +11,7 @@ public class CharacterSkillController : MonoBehaviour
     private SkillIndicatorHandler _indicatorHandler;
 
     private ISkillUser _currentUser;
-    private BaseCharacter _currentCharacter;
+    private CharacterMovement _currentCharacter;
 
     private void Start()
     {
@@ -41,7 +41,7 @@ public class CharacterSkillController : MonoBehaviour
             return;
         }
 
-        _currentCharacter = character;
+        _currentCharacter = character.GetComponent<CharacterMovement>();
         _currentUser = user;
         _indicatorHandler =
     character.GetComponent<SkillIndicatorHandler>();
@@ -64,10 +64,9 @@ public class CharacterSkillController : MonoBehaviour
 
             _skillImages[i].sprite = skill.icon;
             _skillImagesBackground[i].sprite=skill.icon;
-            Debug.Log($"Set icon skill {i}");
+            //Debug.Log($"Set icon skill {i}");
         }
     }
-
     private void Update()
     {
         if (_currentUser == null) return;

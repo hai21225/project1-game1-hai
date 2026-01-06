@@ -6,13 +6,14 @@ public class EnemyController : MonoBehaviour, IPoolable
 
     [SerializeField] private EnemyAi _ai;
     [SerializeField] private EnemyMovement _enemyMovement;
-    [SerializeField] private EnemyAttack _enemyAttack;
+    [SerializeField] private IEnemyAttack _enemyAttack;
     [SerializeField] private EnemyHealth _enemyHealth;
 
     private EnemySpawner _spawner;
     public void Init(EnemySpawner spawner)
     {
         _spawner = spawner;
+        _enemyAttack = GetComponent<IEnemyAttack>();
     }
 
     public void OnDespawn()
@@ -35,7 +36,15 @@ public class EnemyController : MonoBehaviour, IPoolable
     public void ReturnToPool()
     {
         _spawner.NotifyEnemyDead(this);
+        _spawner=null;
         PoolManager.Instance.Despawn(PoolGroup.Common,_nameEnemy, gameObject);
     }
+
+    public void ForceReturnToPool()
+    {
+        _spawner = null;
+        PoolManager.Instance.Despawn(PoolGroup.Common, _nameEnemy, gameObject);
+    }
+
 
 }

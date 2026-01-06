@@ -251,6 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 837f79739599b7c4caf75379cf5d0b7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _namePool: DamageText
   _moveUpSpeed: 1
   _lifeTime: 0.5
   _textMesh: {fileID: 3778076764902718427}

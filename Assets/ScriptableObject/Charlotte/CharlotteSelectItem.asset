@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterId: Charlotte
   portrait: {fileID: 4723107735738678597, guid: e78cf742cf69e99488881755e91d5798, type: 3}
-  characterPrefab: {fileID: 4494482190973500662, guid: 75c3d3cc3c925534ca0735a93968f38d, type: 3}
+  characterPrefab: {fileID: -1558690681332776983, guid: 75c3d3cc3c925534ca0735a93968f38d, type: 3}

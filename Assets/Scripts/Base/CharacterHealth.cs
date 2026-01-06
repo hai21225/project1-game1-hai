@@ -29,12 +29,10 @@ public class CharacterHealth: MonoBehaviour {
             Die();
         }
     }
-
     private void Die()
     {
         OnDead?.Invoke();
     }
-
 
     private void ShowDamage(float damage)
     {
@@ -45,4 +43,8 @@ public class CharacterHealth: MonoBehaviour {
         dmgText.OnSpawn();
     }
 
+    public void ResetHealth()
+    {
+        _health = _stats.maxHp;
+    }
 }

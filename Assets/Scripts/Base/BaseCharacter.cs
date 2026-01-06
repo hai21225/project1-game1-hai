@@ -1,99 +1,42 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class BaseCharacter: MonoBehaviour
 {
     [SerializeField] private PoolData _poolData;
     public PoolData PoolData => _poolData;
 
-    [SerializeField] private CharacterStats _stats;
-    [SerializeField] private Joystick _joystick;
     [SerializeField] private CharacterHealth _health;
+    [SerializeField] private CharacterMovement _move;
 
-    private float _horizontal=0f;
-    private float _vertical = 0f;
-    private bool _isDead =false;
+    public event Action OnDead;
 
-    private Rigidbody2D _rb;
-    private SpriteRenderer _spriteRenderer;
-    private Animator _animator;
+    public event Action OnResetState;
 
-    public Vector2 FacingDirection {  get; private set; } 
+    private bool _isDead;
 
 
-    private void Awake()
-    {
-        if(_joystick == null)
-        {
-            _joystick= FindAnyObjectByType<Joystick>();
-        }
-    }
     private void Start()
     {
-        _rb = GetComponent<Rigidbody2D>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-        _animator = GetComponent<Animator>();
+        _health.OnDead += Dead;
+    }
+
+    public bool IsDead {  get { return _isDead; } }
+
+
+    private void Dead()
+    {
+        _isDead = true;
+        OnDead?.Invoke();
+    }
+
+    public void ResetState()
+    {
+        _health.ResetHealth();
+        _move.ResetState();
         _isDead = false;
 
-        CameraManager.Instance.SetTarget(transform);
-        _health.OnDead += () => { _isDead = true; };
-
-    }
-    private void FixedUpdate()
-    {
-        Movement();
-    }
-    private void Update()
-    {
-        UpdateAnimation();
-        Flip();
+        OnResetState?.Invoke();
     }
 
-    private void Movement()
-    {
-        if (_isDead) { _rb.linearVelocity = Vector2.zero; return; }
-
-        //_horizontal = _joystick.Horizontal;
-        //_vertical = _joystick.Vertical;
-
-        _horizontal = (_joystick.Horizontal != 0) ? _joystick.Horizontal : Input.GetAxis("Horizontal");
-        _vertical = (_joystick.Vertical != 0) ? _joystick.Vertical : Input.GetAxis("Vertical");
-
-        var move = new Vector3(_horizontal, _vertical, 0f);
-        if (move != Vector3.zero)
-        {
-            FacingDirection = new Vector2(move.x, move.y).normalized;
-        }
-        var moveNormalized = move.normalized * _stats.maxSpeed;
-
-        _rb.linearVelocity = new Vector3(moveNormalized.x, moveNormalized.y, 0f);
-
-    }
-    private void UpdateAnimation()
-    {
-        if (_horizontal != 0 || _vertical != 0)
-        {
-            _animator.SetBool("isRunning", true);
-        }
-        else if(_horizontal==0 && _vertical == 0){
-            _animator.SetBool("isRunning", false);
-        }
-
-        _animator.SetBool("isDead", _isDead);
-    }
-    private void Flip()
-    {
-        if (_horizontal > 0f)
-        {
-            _spriteRenderer.flipX= false;
-        }
-        else if(_horizontal < 0f)
-        {
-            _spriteRenderer.flipX= true;
-        }
-    }
-
-
-
-    //API//
-    
 }

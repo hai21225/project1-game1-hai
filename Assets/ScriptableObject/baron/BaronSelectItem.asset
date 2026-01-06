@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterId: Baron
   portrait: {fileID: 8793639957104055765, guid: d1b96e07b4ea29741a4a9edddd083958, type: 3}
-  characterPrefab: {fileID: 6391481163431453547, guid: 7c3323bb7c5e5f743a17fc746c26e5ae, type: 3}
+  characterPrefab: {fileID: -3645768323865091721, guid: 7c3323bb7c5e5f743a17fc746c26e5ae, type: 3}

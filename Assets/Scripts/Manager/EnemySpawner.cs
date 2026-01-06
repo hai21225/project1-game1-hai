@@ -50,4 +50,29 @@ public class EnemySpawner : MonoBehaviour
             StartCoroutine(SpawnWave());
         }
     }
+
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
+    }
+
+
+    public void ResetSpawner()
+    {
+        StopAllCoroutines();
+        _isSpawning = false;
+
+        for (int i = _aliveEnemies.Count - 1; i >= 0; i--)
+        {
+            if (_aliveEnemies[i] != null)
+            {
+                _aliveEnemies[i].ForceReturnToPool();
+            }
+        }
+
+        _aliveEnemies.Clear();
+
+        StartCoroutine(SpawnWave());
+    }
+
 }

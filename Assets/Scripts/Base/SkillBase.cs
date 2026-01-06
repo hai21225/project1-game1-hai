@@ -7,6 +7,23 @@ public abstract class SkillBase : MonoBehaviour
     public event System.Action OnSkillUsed;
     public event System.Action<EnemyHealth> OnHitEnemy;
 
+    protected BaseCharacter character;
+
+    private void Awake()
+    {
+        Debug.Log("aloooooooooooooooooooooooo");
+        character = GetComponent<BaseCharacter>();
+    }
+
+    private void Start()
+    {
+        if (character == null)
+        {
+            Debug.Log("character nulll");
+        }
+        character.OnResetState += () => { Debug.Log("checkadakdaksdkasdk"); lastUseTime = 0f; };
+    }
+
     private void Update()
     {
         if (lastUseTime > 0f)
@@ -27,6 +44,7 @@ public abstract class SkillBase : MonoBehaviour
 
     public void TryUse(Vector2 dir,bool ignoreCooldown= false)
     {
+        Debug.Log($"[TRY] {name} before = {lastUseTime}");
         if (!ignoreCooldown&&!CanUse()) return;
 
         lastUseTime = cooldown;

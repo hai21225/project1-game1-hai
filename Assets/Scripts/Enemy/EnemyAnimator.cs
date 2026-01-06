@@ -25,6 +25,13 @@ public class EnemyAnimator: MonoBehaviour
 
     public void Flip(bool value)
     {
-        _spriteRenderer.flipX = value;
+        if (value)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+        else
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
     }
 }

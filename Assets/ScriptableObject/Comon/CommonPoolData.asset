@@ -19,3 +19,12 @@ MonoBehaviour:
   - name: DamageText
     prefab: {fileID: 3391923251073565160, guid: 5c4305f735954a941a08aec80fcf2ad5, type: 3}
     size: 50
+  - name: BigZombie
+    prefab: {fileID: 8125365106893935855, guid: 66f29b1d18f9c6746b729e07faeffe50, type: 3}
+    size: 10
+  - name: Doc
+    prefab: {fileID: 3711343908565721654, guid: 9ccefdb3f3061114d8b1b76587d319eb, type: 3}
+    size: 10
+  - name: Chort
+    prefab: {fileID: 4335391676262996118, guid: 7571c5ab4b54a744b81f602040b18ed2, type: 3}
+    size: 10

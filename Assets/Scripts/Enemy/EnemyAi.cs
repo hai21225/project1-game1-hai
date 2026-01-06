@@ -38,11 +38,9 @@ public class EnemyAi: MonoBehaviour
         if (_scanTimer > 0f) return;
         _scanTimer = _scanInterval;
 
-        //Debug.Log("checkkkk");
         var player = FindPlayer();
         if (player != null)
         {
-
             _currentTarget = player.transform;
             _losePlayerTimer = _losePlayerTime;
             ChangeState(EnemyState.CHASE);
@@ -104,7 +102,7 @@ public class EnemyAi: MonoBehaviour
             var player= _hits[i].GetComponent<BaseCharacter>();
             //Debug.Log(_hits[i].name + " | layer: " + _hits[i].gameObject.layer);
 
-            if (player != null)
+            if (player != null && !player.IsDead)
             {
                 return player;
             }
@@ -116,7 +114,6 @@ public class EnemyAi: MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, _radiusDetect);
     }
-
     public void ResetState()
     {
         _scanTimer = _scanInterval;
@@ -125,5 +122,4 @@ public class EnemyAi: MonoBehaviour
         _currentTarget = null;
         ChangeState(EnemyState.IDLE);
     }
-
 }

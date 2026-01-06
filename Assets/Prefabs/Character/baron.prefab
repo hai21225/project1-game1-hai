@@ -828,6 +828,7 @@ GameObject:
   - component: {fileID: 6739428032372065129}
   - component: {fileID: 6025885609747926980}
   - component: {fileID: 4505533975370063376}
+  - component: {fileID: -3645768323865091721}
   m_Layer: 3
   m_Name: baron
   m_TagString: Untagged
@@ -1060,7 +1061,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a80fed8967ebf06439313883d4cf1e8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _poolData: {fileID: 11400000, guid: 09e9bcffa49263747b2be3534ad0bdbd, type: 2}
   _stats: {fileID: 11400000, guid: 93a266aa1c904d44f93e55123aed0d40, type: 2}
   _joystick: {fileID: 0}
   _health: {fileID: 4505533975370063376}
@@ -1208,6 +1208,21 @@ MonoBehaviour:
   _health: 0
   _healthbar: {fileID: 4938203020499677415}
   _damageTextPos: {fileID: 7058723212966186179}
+--- !u!114 &-3645768323865091721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8791557952773663005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d1b7546f351cc14b92a1ada8df5529a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _poolData: {fileID: 11400000, guid: 09e9bcffa49263747b2be3534ad0bdbd, type: 2}
+  _health: {fileID: 4505533975370063376}
+  _move: {fileID: 6391481163431453547}
 --- !u!1001 &504319565985104112
 PrefabInstance:
   m_ObjectHideFlags: 0

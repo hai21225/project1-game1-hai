@@ -81,6 +81,9 @@ public class EnemyMovement : MonoBehaviour
         if(dir.sqrMagnitude<=_radiusAttack*_radiusAttack)
         {
             OnAttack?.Invoke(_target);
+            _rb.linearVelocity = Vector2.zero;
+            _animator.SetRunAnimation(false);
+            return;
         }
         _rb.linearVelocity = dir.normalized * _chaseSpeed;
 
