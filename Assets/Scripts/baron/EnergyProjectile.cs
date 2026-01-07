@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class EnergyProjectile : MonoBehaviour, IPoolable
+public class EnergyProjectile : MonoBehaviour, IPoolable,IGameSessionObject
 {
     public System.Action<EnemyHealth> OnHitEnemy;
 
@@ -16,7 +16,8 @@ public class EnergyProjectile : MonoBehaviour, IPoolable
     {
         if (_target == null)
         {
-            PoolManager.Instance.Despawn(PoolGroup.Character, "EnergyProjectile", gameObject);
+            //PoolManager.Instance.Despawn(PoolGroup.Character, "EnergyProjectile", gameObject);
+            Return();
             return;
         }
 
@@ -33,7 +34,8 @@ public class EnergyProjectile : MonoBehaviour, IPoolable
             collision.TryGetComponent(out EnemyHealth enemy))
         {
             OnHitEnemy?.Invoke(enemy);
-            PoolManager.Instance.Despawn(PoolGroup.Character, "EnergyProjectile", gameObject);
+            //PoolManager.Instance.Despawn(PoolGroup.Character, "EnergyProjectile", gameObject);
+            Return();
         }
     }
 
@@ -46,5 +48,10 @@ public class EnergyProjectile : MonoBehaviour, IPoolable
     {
         _target= null;
         OnHitEnemy= null;
+    }
+
+    public void Return()
+    {
+        GameSession.instance.Despawn(PoolGroup.Character, "EnergyProjectile", this, gameObject);
     }
 }

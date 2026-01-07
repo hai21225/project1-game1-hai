@@ -36,9 +36,12 @@ public class CharacterHealth: MonoBehaviour {
 
     private void ShowDamage(float damage)
     {
-        var dmgText = PoolManager.Instance.Spawn
-            (PoolGroup.Common, "DamageText", _damageTextPos.position, Quaternion.identity)
-            .GetComponent<DamageText>();
+        //var dmgText = PoolManager.Instance.Spawn
+        //    (PoolGroup.Common, "DamageText", _damageTextPos.position, Quaternion.identity)
+        //    .GetComponent<DamageText>();
+        var dmgText = GameSession.instance.Spawn
+                (PoolGroup.Common, "DamageText", _damageTextPos.position, Quaternion.identity)
+                .GetComponent<DamageText>();
         dmgText.SetDamage(damage);
         dmgText.OnSpawn();
     }

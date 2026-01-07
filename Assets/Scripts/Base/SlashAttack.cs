@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class SlashAttack : MonoBehaviour, IPoolable
+public class SlashAttack : MonoBehaviour, IPoolable,IGameSessionObject
 {
     [SerializeField] private string _name;
     [SerializeField] private float _lifeTime;
@@ -55,6 +55,12 @@ public class SlashAttack : MonoBehaviour, IPoolable
 
     private void ReturnToPool()
     {
-        PoolManager.Instance.Despawn(PoolGroup.Character, _name,gameObject);
+        //PoolManager.Instance.Despawn(PoolGroup.Character, _name,gameObject);
+        Return();
+    }
+
+    public void Return()
+    {
+        GameSession.instance.Despawn(PoolGroup.Character,_name,this,gameObject);
     }
 }

@@ -33,11 +33,16 @@ public class ChainLightningController : MonoBehaviour
             EnemyHealth next = FindNext(lastHitPos, hit);
             if (next == null) yield break;
 
-            var fx = PoolManager.Instance.Spawn(PoolGroup.Character,
-                        "ChainLightning",
-                        Vector3.zero,
-                        Quaternion.identity
-                        ).GetComponent<ChainLightningEffect>();
+            //var fx = PoolManager.Instance.Spawn(PoolGroup.Character,
+            //            "ChainLightning",
+            //            Vector3.zero,
+            //            Quaternion.identity
+            //            ).GetComponent<ChainLightningEffect>();
+            var fx = GameSession.instance.Spawn(PoolGroup.Character,
+            "ChainLightning",
+            Vector3.zero,
+            Quaternion.identity
+            ).GetComponent<ChainLightningEffect>();
 
             fx.Init(
                 current.transform.position,

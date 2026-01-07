@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class ChainLightningEffect : MonoBehaviour, IPoolable
+public class ChainLightningEffect : MonoBehaviour, IPoolable,IGameSessionObject
 {
     [Header("Visual")]
     [SerializeField] private int _segments = 8;
@@ -65,6 +65,12 @@ public class ChainLightningEffect : MonoBehaviour, IPoolable
 
     private void ReturnToPool()
     {
-        PoolManager.Instance.Despawn(PoolGroup.Character,_name, gameObject);
+        //PoolManager.Instance.Despawn(PoolGroup.Character,_name, gameObject);
+        Return();
+    }
+
+    public void Return()
+    {
+        GameSession.instance.Despawn(PoolGroup.Character, _name, this,gameObject);
     }
 }

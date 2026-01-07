@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 1112194743045334037}
   m_Layer: 6
   m_Name: BigZombie
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -305,6 +305,8 @@ MonoBehaviour:
   _move: {fileID: 6946380426488079005}
   _animator: {fileID: 6040388376116047306}
   _hamer: {fileID: 8211622181744106824}
+  _swingTime: 6
+  _returnTime: 6
 --- !u!1 &8211622181744106824
 GameObject:
   m_ObjectHideFlags: 0

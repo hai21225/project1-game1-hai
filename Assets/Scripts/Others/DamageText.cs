@@ -1,7 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 
-public class DamageText: MonoBehaviour,IPoolable
+public class DamageText: MonoBehaviour,IPoolable,IGameSessionObject
 {
     [SerializeField] private string _namePool;
     [SerializeField] private float _moveUpSpeed= 1f;
@@ -38,7 +38,12 @@ public class DamageText: MonoBehaviour,IPoolable
     }
     private void ReturnToPool()
     {
-        PoolManager.Instance.Despawn(PoolGroup.Common, _namePool, gameObject);
+        //PoolManager.Instance.Despawn(PoolGroup.Common, _namePool, gameObject);
+        Return();
     }
 
+    public void Return()
+    {
+        GameSession.instance.Despawn(PoolGroup.Common,_namePool,this,gameObject);
+    }
 }

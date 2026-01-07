@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class EmpweredPrjtile : MonoBehaviour,IPoolable
+public class EmpweredPrjtile : MonoBehaviour,IPoolable,IGameSessionObject
 {
     [SerializeField] private float _lifeTime = 1f;
     private Transform _target;
@@ -55,6 +55,12 @@ public class EmpweredPrjtile : MonoBehaviour,IPoolable
     }
     private void ReturnToPool()
     {
-        PoolManager.Instance.Despawn(PoolGroup.Character,"EmpoweredProjectile", gameObject);
+        //PoolManager.Instance.Despawn(PoolGroup.Character,"EmpoweredProjectile", gameObject);
+        Return();
+    }
+
+    public void Return()
+    {
+        GameSession.instance.Despawn(PoolGroup.Character, "EmpoweredProjectile", this, gameObject);
     }
 }

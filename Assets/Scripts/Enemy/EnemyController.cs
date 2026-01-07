@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class EnemyController : MonoBehaviour, IPoolable
+public class EnemyController : MonoBehaviour, IPoolable,IGameSessionObject
 {
     [SerializeField] private string _nameEnemy;
 
@@ -37,14 +37,19 @@ public class EnemyController : MonoBehaviour, IPoolable
     {
         _spawner.NotifyEnemyDead(this);
         _spawner=null;
-        PoolManager.Instance.Despawn(PoolGroup.Common,_nameEnemy, gameObject);
+        //PoolManager.Instance.Despawn(PoolGroup.Common,_nameEnemy, gameObject);
+        Return();
     }
 
     public void ForceReturnToPool()
     {
         _spawner = null;
-        PoolManager.Instance.Despawn(PoolGroup.Common, _nameEnemy, gameObject);
+        //PoolManager.Instance.Despawn(PoolGroup.Common, _nameEnemy, gameObject);
+        Return();
     }
 
-
+    public void Return()
+    {
+        GameSession.instance.Despawn(PoolGroup.Common,_nameEnemy,this,gameObject);
+    }
 }

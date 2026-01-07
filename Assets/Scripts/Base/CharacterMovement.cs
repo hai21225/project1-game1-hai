@@ -103,5 +103,6 @@ public class CharacterMovement: MonoBehaviour
         gameObject.GetComponent<BoxCollider2D>().enabled = true;
         _rb.linearVelocity= Vector3.zero;
         _rb.bodyType = RigidbodyType2D.Dynamic;
+        transform.position= transform.position* Random.Range(0f, 2f);   
     }
 }

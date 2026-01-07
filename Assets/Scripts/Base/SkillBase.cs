@@ -3,7 +3,7 @@
 public abstract class SkillBase : MonoBehaviour
 {
     public float cooldown;
-    protected float lastUseTime;
+    protected float cooldownTimer;
     public event System.Action OnSkillUsed;
     public event System.Action<EnemyHealth> OnHitEnemy;
 
@@ -11,25 +11,29 @@ public abstract class SkillBase : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("aloooooooooooooooooooooooo");
+        //Debug.Log("aloooooooooooooooooooooooo");
         character = GetComponent<BaseCharacter>();
     }
-
-    private void Start()
+    private void OnEnable()
     {
-        if (character == null)
-        {
-            Debug.Log("character nulll");
-        }
-        character.OnResetState += () => { Debug.Log("checkadakdaksdkasdk"); lastUseTime = 0f; };
+        character.OnResetState += ResetTimer;
+    }
+    private void OnDisable()
+    {
+        character.OnResetState -= ResetTimer;
     }
 
     private void Update()
     {
-        if (lastUseTime > 0f)
+        if (cooldownTimer > 0f)
         {
-            lastUseTime -= Time.deltaTime;
+            cooldownTimer -= Time.deltaTime;
         }
+    }
+
+    private void ResetTimer()
+    {
+        cooldownTimer = 0f;
     }
 
     protected void RaiseHitEnemy(EnemyHealth enemy)
@@ -39,15 +43,15 @@ public abstract class SkillBase : MonoBehaviour
     }
     public bool CanUse()
     {
-        return lastUseTime <= 0f;
+        return cooldownTimer <= 0f;
     }
 
     public void TryUse(Vector2 dir,bool ignoreCooldown= false)
     {
-        Debug.Log($"[TRY] {name} before = {lastUseTime}");
+        //Debug.Log($"[TRY] {name} before = {cooldownTimer}");
         if (!ignoreCooldown&&!CanUse()) return;
 
-        lastUseTime = cooldown;
+        cooldownTimer = cooldown;
         Execute(dir);
         OnSkillUsed?.Invoke();
     }
@@ -56,7 +60,7 @@ public abstract class SkillBase : MonoBehaviour
 
     public float CooldownPercent()
     {
-        float t = lastUseTime / cooldown;
+        float t = cooldownTimer / cooldown;
         return Mathf.Clamp01(1-t);
     }
 }

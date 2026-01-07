@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: BaronBase
   m_EditorClassIdentifier: 
   maxHp: 100
-  maxSpeed: 5
+  maxSpeed: 7
   mana: 2
   maxDamage: 36
   maxAttackSpeed: 0.5
   rangeAttack: 36
+  damageSkill1: 16
+  damageSkill2: 5
+  damageSkill3: 40

@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 6944769505825055576}
   m_Layer: 6
   m_Name: Doc
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hpbar: {fileID: 1112359961877625775}
-  _maxHp: 360
+  _maxHp: 100
 --- !u!114 &4399109028399679569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -401,6 +401,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1746721811515021293}
     m_Modifications:
+    - target: {fileID: 2494100644799159950, guid: 4aa90d246f4e9c8468866a98b7982ed1, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 461016517
+      objectReference: {fileID: 0}
     - target: {fileID: 4789497402060353559, guid: 4aa90d246f4e9c8468866a98b7982ed1, type: 3}
       propertyPath: m_Color.b
       value: 0

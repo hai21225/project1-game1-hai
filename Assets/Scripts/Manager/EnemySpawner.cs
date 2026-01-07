@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private string _enemyPoolName;
+    public string EnemyName => _enemyPoolName;
     [SerializeField] private int _countPerWave = 5;
     [SerializeField] private float _spawnRadius = 2f;
     [SerializeField] private float _delayBetweenWaves = 2f;
@@ -44,7 +45,7 @@ public class EnemySpawner : MonoBehaviour
     public void NotifyEnemyDead(EnemyController enemy)
     {
         _aliveEnemies.Remove(enemy);
-        Debug.Log("checkkkk :   "+_aliveEnemies.Count);
+        //Debug.Log("checkkkk :   "+_aliveEnemies.Count);
         if (_aliveEnemies.Count == 0 && !_isSpawning)
         {
             StartCoroutine(SpawnWave());
@@ -55,6 +56,28 @@ public class EnemySpawner : MonoBehaviour
     {
         StopAllCoroutines();
     }
+
+
+    //api for necromancer spawn enemy
+    public EnemyController SpawnExtraEnemy(Vector2 pos)
+    {
+        var obj = PoolManager.Instance.Spawn(
+            PoolGroup.Common,
+            _enemyPoolName,
+            pos,
+            Quaternion.identity
+        );
+
+        if (obj == null) return null;
+
+        var enemy = obj.GetComponent<EnemyController>();
+        enemy.Init(this);
+        enemy.OnSpawn();
+
+        _aliveEnemies.Add(enemy);
+        return enemy;
+    }
+
 
 
     public void ResetSpawner()

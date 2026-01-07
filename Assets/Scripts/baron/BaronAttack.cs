@@ -60,9 +60,10 @@ public class BaronAttack : MonoBehaviour, IAttackExecutor
     }
     private void NormalAttack(Transform target)
     {
-        var attack = PoolManager.Instance.Spawn(PoolGroup.Character, "EnergyProjectile", _attackPos.position, Quaternion.identity)
-            .GetComponent<EnergyProjectile>();
-
+        //var attack = PoolManager.Instance.Spawn(PoolGroup.Character, "EnergyProjectile", _attackPos.position, Quaternion.identity)
+        //    .GetComponent<EnergyProjectile>();
+        var attack = GameSession.instance.Spawn(PoolGroup.Character, "EnergyProjectile", _attackPos.position, Quaternion.identity)
+    .GetComponent<EnergyProjectile>();
         attack.Init(target);
 
         attack.OnHitEnemy += enemy =>
@@ -76,7 +77,8 @@ public class BaronAttack : MonoBehaviour, IAttackExecutor
     }
     private void EmpoweredAttack(Transform target)
     {
-        var attack = PoolManager.Instance.Spawn(PoolGroup.Character, "EmpoweredProjectile", _attackPos.position,Quaternion.identity);
+        //var attack = PoolManager.Instance.Spawn(PoolGroup.Character, "EmpoweredProjectile", _attackPos.position,Quaternion.identity);
+        var attack = GameSession.instance.Spawn(PoolGroup.Character, "EmpoweredProjectile", _attackPos.position, Quaternion.identity);
         var aattack = attack.GetComponent<EmpweredPrjtile>();
         aattack.Init(target);
         aattack.OnSpawn();

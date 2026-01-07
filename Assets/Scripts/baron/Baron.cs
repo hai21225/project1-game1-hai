@@ -114,8 +114,10 @@ public class Baron : MonoBehaviour//,ISkillUser
             _isFreeCooldownFromAttack = false;
             _attack.ResetAmountAttack();
         }
-        var obj = PoolManager.Instance.Spawn(PoolGroup.Character,"Lightning", transform.position, Quaternion.identity)
-            .GetComponent<LinearPrjtile>();
+        //var obj = PoolManager.Instance.Spawn(PoolGroup.Character,"Lightning", transform.position, Quaternion.identity)
+        //    .GetComponent<LinearPrjtile>();
+        var obj = GameSession.instance.Spawn(PoolGroup.Character, "Lightning", transform.position, Quaternion.identity)
+    .GetComponent<LinearPrjtile>();
         obj.SetDirection(direction);
     }
 

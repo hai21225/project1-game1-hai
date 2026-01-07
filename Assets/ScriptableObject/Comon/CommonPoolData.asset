@@ -28,3 +28,9 @@ MonoBehaviour:
   - name: Chort
     prefab: {fileID: 4335391676262996118, guid: 7571c5ab4b54a744b81f602040b18ed2, type: 3}
     size: 10
+  - name: Necromancer
+    prefab: {fileID: 8225935650580346043, guid: c7882e922a993a84c80d375ead79769e, type: 3}
+    size: 10
+  - name: ComonProjectile
+    prefab: {fileID: 6012769697441886560, guid: 94b8ec81980a351458e3059c50299474, type: 3}
+    size: 10

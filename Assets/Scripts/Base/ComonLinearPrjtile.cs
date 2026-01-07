@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class LinearPrjtile : MonoBehaviour,IPoolable,IGameSessionObject
+public class ComonLinearPrjtile : MonoBehaviour, IPoolable, IGameSessionObject
 {
     [Header("base")]
     [SerializeField] private string _name;
@@ -10,7 +10,6 @@ public class LinearPrjtile : MonoBehaviour,IPoolable,IGameSessionObject
     private bool _canMove;
     private Vector2 _direction;
     private Vector3 _startPosition;
-    public event System.Action<EnemyHealth> OnEnemy;
     public event System.Action<CharacterHealth> OnPlayer;
 
     private void Update()
@@ -20,9 +19,9 @@ public class LinearPrjtile : MonoBehaviour,IPoolable,IGameSessionObject
     private void Move()
     {
         if (!_canMove) return;
-        transform.Translate(_direction * _speed *Time.deltaTime,Space.World);
+        transform.Translate(_direction * _speed * Time.deltaTime, Space.World);
         float traveled = (transform.position - _startPosition).sqrMagnitude;
-        if(traveled>= _range*_range)
+        if (traveled >= _range * _range)
         {
             ReturnToPool();
         }
@@ -31,26 +30,22 @@ public class LinearPrjtile : MonoBehaviour,IPoolable,IGameSessionObject
     {
         if (dir == Vector2.zero)
         {
-            dir= Vector2.right;
+            dir = Vector2.right;
         }
-        _direction=dir;
-        float angle = Mathf.Atan2(_direction.y,_direction.x) * Mathf.Rad2Deg;
+        _direction = dir;
+        float angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, angle);
-        _startPosition= transform.position;
+        _startPosition = transform.position;
         _canMove = true;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision != null)
         {
-            if(collision.TryGetComponent(out EnemyHealth enemy))
-            {
-                OnEnemy?.Invoke(enemy);
-            }
-            else if(collision.TryGetComponent(out CharacterHealth character))
+            if (collision.TryGetComponent(out CharacterHealth character))
             {
                 OnPlayer?.Invoke(character);
-                ReturnToPool() ;
+                ReturnToPool();
             }
         }
     }
@@ -60,10 +55,10 @@ public class LinearPrjtile : MonoBehaviour,IPoolable,IGameSessionObject
     }
     public void OnDespawn()
     {
-        _canMove=false;
-        _startPosition= Vector2.zero;
-        _direction=Vector2.zero;
-        OnEnemy = null;
+        _canMove = false;
+        _startPosition = Vector2.zero;
+        _direction = Vector2.zero;
+        OnPlayer = null;
     }
     private void ReturnToPool()
     {
@@ -73,7 +68,7 @@ public class LinearPrjtile : MonoBehaviour,IPoolable,IGameSessionObject
 
     public void Return()
     {
-        GameSession.instance.Despawn(PoolGroup.Character,_name,this,gameObject);
+        GameSession.instance.Despawn(PoolGroup.Common, _name, this, gameObject);
     }
 
 

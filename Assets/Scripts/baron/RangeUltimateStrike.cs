@@ -80,8 +80,10 @@ public class RangeUltimateStrike : MonoBehaviour
                     continue;
                 }
                 _enemiesInRange[i].TakeDamage(_damage*21f);
-                var obj= PoolManager.Instance.Spawn(PoolGroup.Character, "ChainLightningUlti",_lightningPos.transform.position,Quaternion.identity)
-                    .GetComponent<ChainLightningEffect>();
+                //var obj= PoolManager.Instance.Spawn(PoolGroup.Character, "ChainLightningUlti",_lightningPos.transform.position,Quaternion.identity)
+                //    .GetComponent<ChainLightningEffect>();
+                var obj = GameSession.instance.Spawn(PoolGroup.Character, "ChainLightningUlti", _lightningPos.transform.position, Quaternion.identity)
+    .GetComponent<ChainLightningEffect>();
                 obj.Init(_lightningPos.transform.position, _enemiesInRange[i].transform.position, "ChainLightningUlti");
                 obj.OnSpawn();  
             }

@@ -80,26 +80,30 @@ public class CharlotteAttack: MonoBehaviour,IAttackExecutor
 
     private void NormalAttack(Transform target)
     {
-        var obj = PoolManager.Instance.Spawn(PoolGroup.Character, _normalAttack, target.position,Quaternion.identity).GetComponent<SlashAttack>();
+        //var obj = PoolManager.Instance.Spawn(PoolGroup.Character, _normalAttack, target.position,Quaternion.identity).GetComponent<SlashAttack>();
+        var obj = GameSession.instance.Spawn(PoolGroup.Character, _normalAttack, target.position, Quaternion.identity).GetComponent<SlashAttack>();
         obj.Init(target,transform);
         obj.OnSpawn();  
 
         obj.OnHitEnemy += enemy =>
         {
+            Debug.Log("trung enenmy"+ _damage);
             enemy.TakeDamage(_damage);
         };
     }
 
     private void EmpoweredAttack(Transform target)
     {
-        transform.position = target.position; 
-        var obj = PoolManager.Instance.Spawn(PoolGroup.Character,_empoweredAttack, target.position, Quaternion.identity)
-            .GetComponent<SlashAttack>();
+        transform.position = target.position;
+        //var obj = PoolManager.Instance.Spawn(PoolGroup.Character,_empoweredAttack, target.position, Quaternion.identity)
+        //    .GetComponent<SlashAttack>();
+        var obj = GameSession.instance.Spawn(PoolGroup.Character, _empoweredAttack, target.position, Quaternion.identity)
+    .GetComponent<SlashAttack>();
         obj .Init(target,transform);
         obj.OnSpawn();
         obj.OnHitEnemy += enemy =>
         {
-            enemy.TakeDamage(_damage+10*0.35f);
+            enemy.TakeDamage(_damage+10);
         };
     }
 

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -12,7 +13,9 @@ public class UIManager: MonoBehaviour
     [SerializeField] private UiButton _restart;
 
     private BaseCharacter _character;
-    private bool _isDead;
+    private bool _isDead=false;
+    private Coroutine _showMenuCoroutine;
+
     private void Awake()
     {
         _canvas.SetActive(false);
@@ -21,20 +24,28 @@ public class UIManager: MonoBehaviour
     {
         if (_character != null)
         {
-            _character.OnDead -= ShowMenu;
+            _character.OnDead -= ShowMenuOnDead;
         }
 
         _character = character;
         _character.OnDead += ShowMenuOnDead;
     }
 
-    private void Start()
+    private void OnEnable()
     {
         _menu.OnClick += ShowMenu;
         _home.OnClick += Home;
         _continue.OnClick += Continue;
         _restart.OnClick += Restart;
     }
+    private void OnDisable()
+    {
+        _menu.OnClick -= ShowMenu;
+        _home.OnClick -= Home;
+        _continue.OnClick -= Continue;
+        _restart.OnClick -= Restart;
+    }
+
     private void ShowMenu()
     {
         Time.timeScale = 0f;
@@ -43,19 +54,31 @@ public class UIManager: MonoBehaviour
 
     private void ShowMenuOnDead()
     {
+        if (_isDead) return;
+
         _isDead = true;
-        float t = 10f;
-        while (t > 0f)
-        {
-            t -= Time.deltaTime;
-        }
+
+        if (_showMenuCoroutine != null)
+            StopCoroutine(_showMenuCoroutine);
+
+        _showMenuCoroutine = StartCoroutine(ShowMenuDelay());
+    }
+
+    private IEnumerator ShowMenuDelay()
+    {
+        yield return new WaitForSeconds(0.25f);
         Time.timeScale = 0f;
         _canvas.SetActive(true);
     }
 
     private void Continue()
     {
-        if(_isDead)
+        if (_showMenuCoroutine != null)
+        {
+            StopCoroutine(_showMenuCoroutine);
+            _showMenuCoroutine = null;
+        }
+        if (_isDead)
         { 
             Restart();
             return; 
@@ -67,7 +90,14 @@ public class UIManager: MonoBehaviour
 
     private void Restart()
     {
+        if (_showMenuCoroutine != null)
+        {
+            StopCoroutine(_showMenuCoroutine);
+            _showMenuCoroutine = null;
+        }
+
         _character.ResetState();
+        GameSession.instance.ResetSession();
         _isDead=false;
 
         foreach (var spawner in _spawners)
