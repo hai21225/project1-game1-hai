@@ -373,7 +373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d7a8ca9e7461e45bb0f8bcf1915dd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _radiusDetect: 7
+  _radiusDetect: 15
   _scanInterval: 1
   _losePlayerTime: 2
   _playerLayer:

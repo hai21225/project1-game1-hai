@@ -34,3 +34,6 @@ MonoBehaviour:
   - name: ComonProjectile
     prefab: {fileID: 6012769697441886560, guid: 94b8ec81980a351458e3059c50299474, type: 3}
     size: 10
+  - name: Knife
+    prefab: {fileID: 1888631224504874170, guid: 738dcc918f794404fa805883830cabc9, type: 3}
+    size: 10

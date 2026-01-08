@@ -11,7 +11,6 @@ public class LinearPrjtile : MonoBehaviour,IPoolable,IGameSessionObject
     private Vector2 _direction;
     private Vector3 _startPosition;
     public event System.Action<EnemyHealth> OnEnemy;
-    public event System.Action<CharacterHealth> OnPlayer;
 
     private void Update()
     {
@@ -46,11 +45,6 @@ public class LinearPrjtile : MonoBehaviour,IPoolable,IGameSessionObject
             if(collision.TryGetComponent(out EnemyHealth enemy))
             {
                 OnEnemy?.Invoke(enemy);
-            }
-            else if(collision.TryGetComponent(out CharacterHealth character))
-            {
-                OnPlayer?.Invoke(character);
-                ReturnToPool() ;
             }
         }
     }

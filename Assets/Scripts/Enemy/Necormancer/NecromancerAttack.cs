@@ -19,6 +19,8 @@ public class NecromancerAttack : MonoBehaviour, IEnemyAttack
     private float _spawntimer = 0f;
     private Coroutine _attackRoutine;
     private Quaternion _defaultRotation;
+    private bool _isSpawn= true;
+    private int count = 0;
     private void Update()
     {
         _timer-=Time.deltaTime;
@@ -49,6 +51,8 @@ public class NecromancerAttack : MonoBehaviour, IEnemyAttack
 
         _staff.transform.localRotation = _defaultRotation;
         _timer = 0f;
+        count = 0;
+        _isSpawn = true;
     }
 
     public void OnSpawn()
@@ -59,11 +63,16 @@ public class NecromancerAttack : MonoBehaviour, IEnemyAttack
 
     private void SpawnEnemy()
     {
-        if(_spawntimer > 0f) { return; }
+        if(_spawntimer > 0f || !_isSpawn) { return; }
 
 
         _spawntimer=_cooldown;
         EnemySpawnService.Instance.Spawn(_enemyNameSpawn,_pos.position);
+        count++;
+        if (count == 2)
+        {
+            _isSpawn = false;
+        }
     }
 
 

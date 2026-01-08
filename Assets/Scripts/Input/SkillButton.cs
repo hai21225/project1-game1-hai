@@ -120,4 +120,10 @@ public class SkillButton : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
         Interactable = value;
     }
 
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position,_joystickRadius);
+    }
+
 }

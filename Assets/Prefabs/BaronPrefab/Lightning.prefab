@@ -162,6 +162,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Lightning
   _speed: 15
-  _range: 45
-  _force: 6
-  _durationKnockback: 0.12
+  _range: 10

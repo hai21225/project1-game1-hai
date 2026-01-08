@@ -6,6 +6,7 @@ public class ComonLinearPrjtile : MonoBehaviour, IPoolable, IGameSessionObject
     [SerializeField] private string _name;
     [SerializeField] private float _speed = 10f;
     [SerializeField] private float _range = 5f;
+    [SerializeField] private float _alpha = 0f;
 
     private bool _canMove;
     private Vector2 _direction;
@@ -34,7 +35,7 @@ public class ComonLinearPrjtile : MonoBehaviour, IPoolable, IGameSessionObject
         }
         _direction = dir;
         float angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, angle);
+        transform.rotation = Quaternion.Euler(0f, 0f, angle+_alpha);
         _startPosition = transform.position;
         _canMove = true;
     }
