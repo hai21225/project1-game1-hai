@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17ac9508c2695bf4cbc1b0550f1db1de, type: 3}
   m_Name: BaronBase
   m_EditorClassIdentifier: 
-  maxHp: 100
+  maxHp: 1000
   maxSpeed: 7
   mana: 2
-  maxDamage: 36
-  maxAttackSpeed: 0.5
+  maxDamage: 21
+  maxAttackSpeed: 0.7
   rangeAttack: 36
   damageSkill1: 16
   damageSkill2: 5
   damageSkill3: 40
+  healing: 35

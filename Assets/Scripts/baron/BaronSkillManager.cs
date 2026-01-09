@@ -1,5 +1,11 @@
 ﻿using UnityEngine;
 
+public enum UltimateState
+{ 
+    None,
+    Rising,
+    LightningGod
+}
 public class BaronSkillManager : MonoBehaviour, ISkillUser
 {
     [SerializeField] private CharacterStats _stats;
@@ -7,8 +13,19 @@ public class BaronSkillManager : MonoBehaviour, ISkillUser
     [SerializeField] private SkillBase[] _skills;
     [SerializeField] private BaronAttack _attack;
     public CharacterSkillSet SkillSet => _skillSet;
+    [SerializeField] private float _timeLightningGod = 5f;
 
+
+
+    private Animator _animator;
+    private UltimateState _state= UltimateState.None;
     private bool _isCooldownReset = false;
+    private float _timer = 0f;
+
+    private void Awake()
+    {
+        _animator = GetComponent<Animator>();
+    }
 
     private void Start()
     {
@@ -17,11 +34,12 @@ public class BaronSkillManager : MonoBehaviour, ISkillUser
             _skills[i].cooldown = _skillSet.GetSkill(i).cooldown;
 
 
-            _skills[i].OnHitEnemy += OnHitEnemy;
         }
+        _skills[1].OnHitEnemy += OnHitEnemy;
+
         _skills[0].OnSkillUsed += OnSkillUsed;
         _skills[1].OnSkillUsed += OnSkillUsed;
-        //_skills[2].OnSkillUsed += OnSkillUsed;
+        _skills[2].OnSkillUsed += OnSkill3Used;
     }
 
     private void Update()
@@ -29,6 +47,17 @@ public class BaronSkillManager : MonoBehaviour, ISkillUser
         if (_attack.GetAmountAttack())
         {
             _isCooldownReset = true;
+        }
+
+        if (_state == UltimateState.LightningGod)
+        {
+            _timer -= Time.deltaTime;
+            if(_timer <= 0f)
+            {
+                _state = UltimateState.None;
+                _attack.SetGodState(false);
+                _animator.SetBool("isUltimateOn", false);
+            }
         }
     }
 
@@ -40,14 +69,19 @@ public class BaronSkillManager : MonoBehaviour, ISkillUser
     }
 
 
-    private void OnHitEnemy(EnemyHealth enemy)
+    private void OnSkill3Used()
     {
-
+        _state = UltimateState.LightningGod;
+        _timer = _timeLightningGod;
+        _attack.SetGodState(true);
+        _animator.SetBool("isUltimateOn", true);
     }
 
-
-
-
+    private void OnHitEnemy(EnemyHealth enemy)
+    {
+        enemy.TakeDamage(_stats.damageSkill1);
+        
+    }
 
 
     public bool CanUseSkill(int index)

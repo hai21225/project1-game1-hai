@@ -23,7 +23,7 @@ public class CharacterHealth: MonoBehaviour {
     public void TakeDamage(float damage)
     {
         _health -= damage;
-        ShowDamage(damage);
+        ShowText(damage,Color.red);
         if (_health <= 0)
         {
             Die();
@@ -34,20 +34,31 @@ public class CharacterHealth: MonoBehaviour {
         OnDead?.Invoke();
     }
 
-    private void ShowDamage(float damage)
+    
+
+    private void ShowText(float damage,Color color)
     {
-        //var dmgText = PoolManager.Instance.Spawn
-        //    (PoolGroup.Common, "DamageText", _damageTextPos.position, Quaternion.identity)
-        //    .GetComponent<DamageText>();
         var dmgText = GameSession.instance.Spawn
                 (PoolGroup.Common, "DamageText", _damageTextPos.position, Quaternion.identity)
                 .GetComponent<DamageText>();
-        dmgText.SetDamage(damage);
+        dmgText.SetDamage(damage,color);
         dmgText.OnSpawn();
     }
 
     public void ResetHealth()
     {
         _health = _stats.maxHp;
+    }
+
+
+    public void Healing(float amount)
+    {
+        if (_health == _stats.maxHp) return;
+        ShowText(amount,Color.green);
+        _health += amount;
+        if(_health>=_stats.maxHp)
+        {
+            _health = _stats.maxHp;
+        }
     }
 }

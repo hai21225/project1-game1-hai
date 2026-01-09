@@ -113,7 +113,7 @@ public class UIManager: MonoBehaviour
         Time.timeScale = 1f;
         PoolManager.Instance.ClearGroup(PoolGroup.Common);
         PoolManager.Instance.ClearGroup(PoolGroup.Character);
-        SceneManager.LoadScene("CharacterSelectScene");
+        SceneManager.LoadScene("HomeScene");
     }
 
 }

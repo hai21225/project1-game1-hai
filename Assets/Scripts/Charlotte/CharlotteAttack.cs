@@ -9,7 +9,7 @@ public class CharlotteAttack: MonoBehaviour,IAttackExecutor
     [SerializeField] private GameObject _sword;
     [SerializeField] private string _normalAttack;
     [SerializeField] private string _empoweredAttack;
-
+    [SerializeField] private CharacterHealth _health;
     private float _damage;
     private int _currentMana;
     private bool _isEmpoweredAttack;
@@ -46,10 +46,12 @@ public class CharlotteAttack: MonoBehaviour,IAttackExecutor
             EmpoweredAttack(target);
             _isEmpoweredAttack=false;
             _currentMana = 0;
+            _health.Healing(_stats.healing);
         }
         else
         {
             NormalAttack(target);
+            _health.Healing(_stats.healing*0.5f);
         }
     }
     private IEnumerator AttackRotateSmooth(Transform target)
@@ -87,7 +89,7 @@ public class CharlotteAttack: MonoBehaviour,IAttackExecutor
 
         obj.OnHitEnemy += enemy =>
         {
-            Debug.Log("trung enenmy"+ _damage);
+            //Debug.Log("trung enenmy"+ _damage);
             enemy.TakeDamage(_damage);
         };
     }

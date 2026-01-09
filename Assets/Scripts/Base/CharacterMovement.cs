@@ -49,11 +49,11 @@ public class CharacterMovement: MonoBehaviour
     {
         if (_isDead) { _rb.linearVelocity = Vector2.zero; return; }
 
-        //_horizontal = _joystick.Horizontal;
-        //_vertical = _joystick.Vertical;
+        _horizontal = _joystick.Horizontal;
+        _vertical = _joystick.Vertical;
 
-        _horizontal = (_joystick.Horizontal != 0) ? _joystick.Horizontal : Input.GetAxis("Horizontal");
-        _vertical = (_joystick.Vertical != 0) ? _joystick.Vertical : Input.GetAxis("Vertical");
+        //_horizontal = (_joystick.Horizontal != 0) ? _joystick.Horizontal : Input.GetAxis("Horizontal");
+        //_vertical = (_joystick.Vertical != 0) ? _joystick.Vertical : Input.GetAxis("Vertical");
 
         var move = new Vector3(_horizontal, _vertical, 0f);
         if (move != Vector3.zero)

@@ -8,6 +8,7 @@ public class BaronAttack : MonoBehaviour, IAttackExecutor
     [SerializeField] private GameObject _handAttack;
     [SerializeField] private Transform _attackPos;
     [SerializeField] private ChainLightningController _chain;
+    [SerializeField] private CharacterHealth _health;
     private float _damage;
     private int _amountAttack;
     private int _currentAmountAttack = 0;
@@ -32,10 +33,12 @@ public class BaronAttack : MonoBehaviour, IAttackExecutor
         if (_isEmpowered)
         {
             EmpoweredAttack(target);
+            _health.Healing(_stats.healing);
         }
         else
         {
             NormalAttack(target);
+            _health.Healing(_stats.healing * 0.5f);
         }
 
         Invoke(nameof(Disable), 0.15f);
@@ -68,10 +71,14 @@ public class BaronAttack : MonoBehaviour, IAttackExecutor
 
         attack.OnHitEnemy += enemy =>
         {
-            if (_isGod)
+            if (_isGod) { 
                 _chain.Execute(enemy);
-            else
-                enemy.TakeDamage(_damage);
+                
+            }
+            else {
+                enemy.TakeDamage(_damage); 
+            }
+            
         };
         SetAmountAttack();
     }

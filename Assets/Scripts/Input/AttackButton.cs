@@ -30,18 +30,18 @@ public class AttackButton : MonoBehaviour,
         ResetScale();
     }
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space)) {
-            IsHolding= true;
-            PlayPulse();
-        }
-        else if( Input.GetKeyUp(KeyCode.Space))
-        {
-            IsHolding=false;
-            ResetScale();
-        }
-    }
+    //private void Update()
+    //{
+    //    if(Input.GetKeyDown(KeyCode.Space)) {
+    //        IsHolding= true;
+    //        PlayPulse();
+    //    }
+    //    else if( Input.GetKeyUp(KeyCode.Space))
+    //    {
+    //        IsHolding=false;
+    //        ResetScale();
+    //    }
+    //}
 
     private void PlayPulse()
     {

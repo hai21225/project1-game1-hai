@@ -9,9 +9,10 @@ public class DamageText: MonoBehaviour,IPoolable,IGameSessionObject
 
     [SerializeField] private TextMeshProUGUI _textMesh;
     private  Color _color;
-    public void SetDamage(float damage)
+    public void SetDamage(float damage, Color color)
     {
         _textMesh.text = (damage).ToString();
+        _color = color;
     }
 
     private void Update()
@@ -29,7 +30,6 @@ public class DamageText: MonoBehaviour,IPoolable,IGameSessionObject
 
     public void OnSpawn()
     {
-        _color = _textMesh.color;
     }
 
     public void OnDespawn()

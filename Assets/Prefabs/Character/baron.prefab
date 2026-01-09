@@ -1112,6 +1112,7 @@ MonoBehaviour:
   _handAttack: {fileID: 5971711761816681745}
   _attackPos: {fileID: 2668138660170282447}
   _chain: {fileID: 2375716205323630410}
+  _health: {fileID: 4505533975370063376}
 --- !u!114 &2375716205323630410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1147,6 +1148,7 @@ MonoBehaviour:
   - {fileID: 6739428032372065129}
   - {fileID: 6025885609747926980}
   _attack: {fileID: 4380774936397638526}
+  _timeLightningGod: 5
 --- !u!114 &6333959977792176309
 MonoBehaviour:
   m_ObjectHideFlags: 0

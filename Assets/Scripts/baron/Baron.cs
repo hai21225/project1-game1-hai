@@ -1,13 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public enum UltimateState
-{
-    None,
-    Rising,
-    Landing,
-    LightningGod
-}
+
 public class Baron : MonoBehaviour//,ISkillUser
 {
     [SerializeField] private GameObject _ultimateEffect;

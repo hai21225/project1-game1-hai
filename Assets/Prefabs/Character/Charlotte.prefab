@@ -334,6 +334,7 @@ MonoBehaviour:
   _sword: {fileID: 6829944601251010177}
   _normalAttack: CharlotteAttack
   _empoweredAttack: CharlotteEmpowered
+  _health: {fileID: 4803258246556771641}
 --- !u!114 &5136673439532991452
 MonoBehaviour:
   m_ObjectHideFlags: 0

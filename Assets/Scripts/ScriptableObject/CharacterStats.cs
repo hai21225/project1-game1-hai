@@ -18,6 +18,8 @@ public class CharacterStats : ScriptableObject
     public float damageSkill2 = 5f;
     public float damageSkill3 = 40f;
 
+    public float healing = 10f;
+
     public float GetDamageSkil(int index)
     {
         switch (index)
