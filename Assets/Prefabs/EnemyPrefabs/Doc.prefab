@@ -303,7 +303,7 @@ MonoBehaviour:
   _move: {fileID: 3249365353359437417}
   _nameObjectPool: Knife
   _pos: {fileID: 4360034361711760980}
-  _damage: 21
+  _damage: 30
   _delay: 1
 --- !u!1 &4493092000585798119
 GameObject:

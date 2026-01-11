@@ -6,6 +6,9 @@ public class CharacterSelectItem : MonoBehaviour, IPointerDownHandler, IPointerU
 {
     [SerializeField] private Image _icon;
     private CharacterData _characterData;
+    [SerializeField] private GameObject _selectedBorder;
+
+    public CharacterData CharacterData => _characterData;
 
     //private bool _isDragging;
     private Vector2 _downPos;
@@ -13,11 +16,18 @@ public class CharacterSelectItem : MonoBehaviour, IPointerDownHandler, IPointerU
 
     public void Init(CharacterData data)
     {
-        //Debug.Log("nguuuuuuuuuuuuuuuuuuuu");
+        
         _characterData = data;
         _icon.sprite = data.portrait;
-        //Debug.Log("checkakdkakdad");
+        SetSelected(false);
     }
+
+    public void SetSelected(bool value)
+    {
+        if (_selectedBorder != null)
+            _selectedBorder.SetActive(value);
+    }
+
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -37,6 +47,6 @@ public class CharacterSelectItem : MonoBehaviour, IPointerDownHandler, IPointerU
         if (distance > TAP_THRESHOLD)
             return; 
 
-        CharacterSelectManager.Instance.SelectCharacter(_characterData);
+        CharacterSelectManager.Instance.OnItemSelected(this);
     }
 }

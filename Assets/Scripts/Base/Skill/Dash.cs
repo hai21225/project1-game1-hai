@@ -9,8 +9,10 @@ public class Dash : SkillBase
     [SerializeField] private float _dashDuration = 0.15f;
     private bool _isDashing = false;
     private SpriteRenderer _spriteRenderer;
+    private Rigidbody2D _rb;
     private void Start()
     {
+        _rb = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
     protected override void Execute(Vector2 dir)
@@ -35,13 +37,13 @@ public class Dash : SkillBase
         while (time < _dashDuration)
         {
             float t = time / _dashDuration;
-            transform.position = Vector3.Lerp(startPos, targetPos, t);
+            _rb.transform.position = Vector3.Lerp(startPos, targetPos, t);
 
             time += Time.deltaTime;
             yield return null;
         }
 
-        transform.position = targetPos;
+        _rb.transform.position = targetPos;
         _isDashing = false;
     }
 }

@@ -91,6 +91,7 @@ public class NecromancerAttack : MonoBehaviour, IEnemyAttack
         yield return new WaitForSeconds(0.05f);
         var go =GameSession.instance.Spawn(PoolGroup.Common, _nameObjectPool, _posProjecttile.position, Quaternion.identity)
             .GetComponent<ComonLinearPrjtile>();
+        if (go == null) yield break;
         go.SetDirection((target.position-_posProjecttile.position).normalized);
         go.OnPlayer += (player) =>
         {

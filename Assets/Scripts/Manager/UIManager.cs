@@ -19,6 +19,7 @@ public class UIManager: MonoBehaviour
     private void Awake()
     {
         _canvas.SetActive(false);
+        SoundManager.Instance.PlayGameBackGround();
     }
     public void SetCharacter(BaseCharacter character)
     {

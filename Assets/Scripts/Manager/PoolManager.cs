@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using static PoolManager;
 
@@ -11,6 +12,10 @@ public enum PoolGroup {
 public class PoolManager: MonoBehaviour
 {
     public static PoolManager Instance;
+
+    public event Action OnPoolInitFinished;
+
+    private int _initGroupCounter;
 
     [System.Serializable] 
     public class Pool
@@ -43,12 +48,16 @@ public class PoolManager: MonoBehaviour
     }
     public void InitCharacterPools(Pool[] newPools)
     {
+        _initGroupCounter++;
         InitGroup(_characterPools, newPools);
+        OnGroupInitFinished();
     }
 
     public void InitCommonPools(Pool[] pools)
     {
+        _initGroupCounter++;
         InitGroup(_commonPools, pools); 
+        OnGroupInitFinished ();
     }
 
     private void InitGroup(Dictionary<string, PoolRuntime> dict, Pool[] pools)
@@ -124,6 +133,15 @@ public class PoolManager: MonoBehaviour
         }
 
         dict.Clear();
+    }
+
+    private void OnGroupInitFinished()
+    {
+        _initGroupCounter--;
+        if (_initGroupCounter <= 0)
+        {
+            OnPoolInitFinished?.Invoke();    
+        }
     }
 
 }

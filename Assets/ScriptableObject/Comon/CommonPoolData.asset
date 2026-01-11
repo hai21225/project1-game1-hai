@@ -18,7 +18,7 @@ MonoBehaviour:
     size: 10
   - name: DamageText
     prefab: {fileID: 3391923251073565160, guid: 5c4305f735954a941a08aec80fcf2ad5, type: 3}
-    size: 50
+    size: 25
   - name: BigZombie
     prefab: {fileID: 8125365106893935855, guid: 66f29b1d18f9c6746b729e07faeffe50, type: 3}
     size: 10

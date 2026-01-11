@@ -453,7 +453,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyNameSpawn: Chort
   _nameObjectPool: ComonProjectile
-  _damage: 21
+  _damage: 25
   _delay: 1
   _cooldown: 5
   _pos: {fileID: 5595826600604035558}

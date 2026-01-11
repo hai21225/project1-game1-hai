@@ -84,6 +84,7 @@ public class RangeUltimateStrike : MonoBehaviour
                 //    .GetComponent<ChainLightningEffect>();
                 var obj = GameSession.instance.Spawn(PoolGroup.Character, "ChainLightningUlti", _lightningPos.transform.position, Quaternion.identity)
     .GetComponent<ChainLightningEffect>();
+                if (obj == null) yield break;
                 obj.Init(_lightningPos.transform.position, _enemiesInRange[i].transform.position, "ChainLightningUlti");
                 obj.OnSpawn();  
             }

@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17ac9508c2695bf4cbc1b0550f1db1de, type: 3}
   m_Name: Charlote
   m_EditorClassIdentifier: 
-  maxHp: 1500
+  maxHp: 600
   maxSpeed: 7
   mana: 3
   maxDamage: 30
   maxAttackSpeed: 0.55
   rangeAttack: 10
-  damageSkill1: 16
-  damageSkill2: 6
-  damageSkill3: 500
-  healing: 50
+  damageSkill1: 36
+  damageSkill2: 20
+  damageSkill3: 150
+  healing: 45

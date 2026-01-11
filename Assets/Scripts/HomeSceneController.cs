@@ -6,12 +6,17 @@ public class HomeSceneController: MonoBehaviour
 
     [SerializeField] private UiButton[] _buttons;
 
-    private static HomeSceneController _instance;
 
     private void Awake()
     {
         Application.targetFrameRate = 60;
         QualitySettings.vSyncCount = 0;
+        
+    }
+
+    private void Start()
+    {
+        SoundManager.Instance.PlayDefault();
     }
 
     private void OnEnable()

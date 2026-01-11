@@ -246,7 +246,7 @@ MonoBehaviour:
   _wanderRadius: 3
   _moveSpeed: 1.5
   _chaseSpeed: 3
-  _radiusAttack: 1.12
+  _radiusAttack: 2
   _animator: {fileID: 6040388376116047306}
 --- !u!114 &6040388376116047306
 MonoBehaviour:

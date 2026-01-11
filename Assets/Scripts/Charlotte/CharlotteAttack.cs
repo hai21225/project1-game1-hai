@@ -84,6 +84,7 @@ public class CharlotteAttack: MonoBehaviour,IAttackExecutor
     {
         //var obj = PoolManager.Instance.Spawn(PoolGroup.Character, _normalAttack, target.position,Quaternion.identity).GetComponent<SlashAttack>();
         var obj = GameSession.instance.Spawn(PoolGroup.Character, _normalAttack, target.position, Quaternion.identity).GetComponent<SlashAttack>();
+        if (obj == null) { return; }
         obj.Init(target,transform);
         obj.OnSpawn();  
 
@@ -101,6 +102,7 @@ public class CharlotteAttack: MonoBehaviour,IAttackExecutor
         //    .GetComponent<SlashAttack>();
         var obj = GameSession.instance.Spawn(PoolGroup.Character, _empoweredAttack, target.position, Quaternion.identity)
     .GetComponent<SlashAttack>();
+        if (obj == null) { return; }
         obj .Init(target,transform);
         obj.OnSpawn();
         obj.OnHitEnemy += enemy =>

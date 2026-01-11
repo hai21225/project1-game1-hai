@@ -112,7 +112,7 @@ public class Baron : MonoBehaviour//,ISkillUser
         //    .GetComponent<LinearPrjtile>();
         var obj = GameSession.instance.Spawn(PoolGroup.Character, "Lightning", transform.position, Quaternion.identity)
     .GetComponent<LinearPrjtile>();
-        obj.SetDirection(direction);
+        if (obj != null) { obj.SetDirection(direction); }
     }
 
     public void Skill3(Vector2 direction)

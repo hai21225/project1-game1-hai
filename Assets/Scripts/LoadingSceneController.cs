@@ -4,7 +4,7 @@ using System.Collections;
 
 public class LoadingSceneController : MonoBehaviour
 {
-    private IEnumerator Start()
+    private void Start()
     {
         var character = GameManager.Instance.SelectedCharacter;
         var common = GameManager.Instance.PoolData;
@@ -12,16 +12,21 @@ public class LoadingSceneController : MonoBehaviour
         if (character == null)
         {
             Debug.LogError("No character selected!");
-            yield break;
+            return;
         }
 
+        PoolManager.Instance.OnPoolInitFinished += LoadMainScene;
         // Init pool
         PoolManager.Instance.InitCharacterPools(character.PoolData.pools);
         PoolManager.Instance.InitCommonPools(common.pools);
-        // waiting 1 frame to finish
-        yield return null;
 
-        
+
+    }
+
+
+    private void LoadMainScene()
+    {
+        PoolManager.Instance.OnPoolInitFinished -= LoadMainScene;
         SceneManager.LoadScene("MainScene");
     }
 }

@@ -261,7 +261,7 @@ MonoBehaviour:
   _wanderRadius: 3
   _moveSpeed: 2
   _chaseSpeed: 5
-  _radiusAttack: 1.92
+  _radiusAttack: 2.5
   _animator: {fileID: 3322354771280538282}
 --- !u!114 &5896872346340045863
 MonoBehaviour:
@@ -292,7 +292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _delay: 1.5
-  _damage: 10
+  _damage: 17
   _move: {fileID: 2644159079149686702}
   _animator: {fileID: 3322354771280538282}
 --- !u!1 &3451402232585111835

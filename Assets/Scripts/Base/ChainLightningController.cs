@@ -43,6 +43,10 @@ public class ChainLightningController : MonoBehaviour
             Vector3.zero,
             Quaternion.identity
             ).GetComponent<ChainLightningEffect>();
+            if ( fx == null)
+            {
+                yield break;
+            }
 
             fx.Init(
                 current.transform.position,
