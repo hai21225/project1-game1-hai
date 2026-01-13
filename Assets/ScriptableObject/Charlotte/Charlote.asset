@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 600
   maxSpeed: 7
-  mana: 3
+  mana: 2
   maxDamage: 30
-  maxAttackSpeed: 0.55
+  maxAttackSpeed: 0.3
   rangeAttack: 10
   damageSkill1: 36
   damageSkill2: 20
   damageSkill3: 150
-  healing: 45
+  healing: 30

@@ -10,16 +10,29 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float _spawnRadius = 2f;
     [SerializeField] private float _delayBetweenWaves = 2f;
 
+    [SerializeField] private int _startCount = 3;
+    [SerializeField] private int _maxCount = 20;
+    [SerializeField] private float _growthRate = 1.3f;
+
+    private int _currentWaveCount;
     private readonly List<EnemyController> _aliveEnemies = new();
     private bool _isSpawning;
 
     private void Start()
     {
+        _currentWaveCount= _startCount;
         StartCoroutine(SpawnWave());
     }
 
     private IEnumerator SpawnWave()
     {
+        _currentWaveCount = Mathf.Min(
+    Mathf.CeilToInt(_currentWaveCount * _growthRate),
+    _maxCount
+);
+
+        _countPerWave = _currentWaveCount;
+
         _isSpawning = true;
 
         yield return new WaitForSeconds(_delayBetweenWaves);
@@ -31,7 +44,7 @@ public class EnemySpawner : MonoBehaviour
                 Random.insideUnitCircle * _spawnRadius;
             var obj = PoolManager.Instance.Spawn(PoolGroup.Common,_enemyPoolName,pos,Quaternion.identity);
 
-            if (obj == null) continue;
+            if (obj == null) break;
 
             var enemy = obj.GetComponent<EnemyController>();
             enemy.Init(this);
@@ -92,6 +105,7 @@ public class EnemySpawner : MonoBehaviour
                 _aliveEnemies[i].ForceReturnToPool();
             }
         }
+        _currentWaveCount = _startCount;
 
         _aliveEnemies.Clear();
 

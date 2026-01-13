@@ -19,10 +19,10 @@ public class CharacterSpawner : MonoBehaviour
 
         BaseCharacter character = Instantiate(
             prefab,
-            _spawnPos * Random.Range(0, 2f),
+            _spawnPos,
             Quaternion.identity
         ); ;
-
+        character.SpawnPos(_spawnPos);
         if (!character.TryGetComponent<ISkillUser>(out var skillUser))
         {
             return;

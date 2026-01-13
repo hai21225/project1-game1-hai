@@ -1163,6 +1163,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 0
   _dashDistance: 5
+  _wallLayer:
+    serializedVersion: 2
+    m_Bits: 128
   _dashDuration: 0.15
 --- !u!114 &6739428032372065129
 MonoBehaviour:

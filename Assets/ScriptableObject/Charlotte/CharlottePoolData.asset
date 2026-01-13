@@ -15,10 +15,10 @@ MonoBehaviour:
   pools:
   - name: CharlotteAttack
     prefab: {fileID: 7073435237771267369, guid: 8b5b1b9a7c597de4e810abe5b00f88ad, type: 3}
-    size: 10
+    size: 15
   - name: CharlotteEmpowered
     prefab: {fileID: 4008539207660833262, guid: 98deb1cc99b4f7e4e9994b983c474131, type: 3}
     size: 10
   - name: CharlotteSkill1
     prefab: {fileID: 620883286688559021, guid: 2d73730421bf3cc4285f36c3f9fda7df, type: 3}
-    size: 10
+    size: 15

@@ -9,6 +9,11 @@ public class BaseCharacter: MonoBehaviour
     [SerializeField] private CharacterHealth _health;
     [SerializeField] private CharacterMovement _move;
 
+
+
+    private Vector3 _spawnPos;
+    public void SpawnPos(Vector3 pos) { _spawnPos=pos; }
+
     public event Action OnDead;
 
     public event Action OnResetState;
@@ -33,7 +38,7 @@ public class BaseCharacter: MonoBehaviour
     public void ResetState()
     {
         _health.ResetHealth();
-        _move.ResetState();
+        _move.ResetState(_spawnPos);
         _isDead = false;
 
         OnResetState?.Invoke();

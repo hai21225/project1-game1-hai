@@ -97,12 +97,12 @@ public class CharacterMovement: MonoBehaviour
         _rb.bodyType= RigidbodyType2D.Static;
     }
 
-    public void ResetState()
+    public void ResetState(Vector3 spawnPos)
     {
         _isDead= false;
         gameObject.GetComponent<BoxCollider2D>().enabled = true;
         _rb.linearVelocity= Vector3.zero;
         _rb.bodyType = RigidbodyType2D.Dynamic;
-        transform.position= transform.position* Random.Range(0f, 2f);   
+        transform.position = spawnPos;
     }
 }
